@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto; /* Permite que el elemento ocupe el espacio disponible */
+  }
+  
+  /* Opcional: estilos para el grupo de botones */
+  .button-group {
+    display: flex; /* Alinea los botones horizontalmente */
+    gap: 10px;    /* Agrega espacio entre los botones */
+  }
+  

@@ -1,0 +1,27 @@
+<header>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Bienvenido/a TolalaVida Ecommerce</span>
+    <span class="example-spacer"></span>
+    <div class="button-group">
+    <button mat-button *ngIf="!userLoginOn">Iniciar Sesión</button>
+    <button mat-button *ngIf="!userLoginOn">Registrarse</button>
+    <button mat-button *ngIf="userLoginOn">Cerrar Sesión</button>
+    </div>
+</mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="false">
+      <mat-nav-list>
+        <a mat-list-item>Inicio</a>
+        <a mat-list-item>Perfil</a>
+        </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+    
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</header>
