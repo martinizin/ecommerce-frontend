@@ -1,52 +1,85 @@
 import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatOption } from '@angular/material/core';
-import { MatSelectionList } from '@angular/material/list';
-import { FormControl,FormGroup } from '@angular/forms';
-import { NgIf } from '@angular/common';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { RegistroService } from '../../servicios/registro.service';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [MatButtonModule,MatInputModule,MatCardModule,MatFormFieldModule,MatOption,MatSelectionList,NgIf,ReactiveFormsModule],
+  imports: [
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    RouterModule ,
+    CommonModule// Asegúrate de importar RouterModule si usas Router
+  ],
   templateUrl: './registro.component.html',
-  styleUrl: './registro.component.css'
+  styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
   formulario: FormGroup;
-  registroService= inject(RegistroService); 
-  router: any;
-  constructor(){
-    this.formulario=new FormGroup({
-      username: new FormControl(),
-      email:new FormControl(),
-      password: new FormControl(),
-      rol:  new FormControl(['CLIENTE'])
-    })
+  otpForm: FormGroup;
+  showOtpForm = false;
+  email?: string;  // Usa el modificador opcional aquí
+  registroService = inject(RegistroService);
+  router = inject(Router);
+
+  constructor() {
+    this.formulario = new FormGroup({
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', Validators.required),
+      rol: new FormControl(['CLIENTE'], Validators.required)
+    });
+
+    this.otpForm = new FormGroup({
+      otp: new FormControl('', Validators.required)
+    });
   }
+
   async onSubmit() {
     if (this.formulario.valid) {
       try {
-        const response = await this.registroService.login(this.formulario.value);
-        console.log('Inicio de sesión exitoso:', response);
-        // Lógica adicional para manejar la respuesta (redireccionar, mostrar mensaje, etc.)
-        this.router.navigate(['/home']); // Assuming you have a 'home' route
+        const response = await this.registroService.register(this.formulario.value);
+        console.log('Registro exitoso:', response);
+        
+        this.email = response.email;
+        this.showOtpForm = true;
       } catch (error) {
-        console.error('Error en el inicio de sesión:', error);
-        // Maneja el error adecuadamente (muestra un mensaje de error, etc.)
+        console.error('Error en el registro:', error);
       }
     } else {
       this.formulario.markAllAsTouched();
     }
   }
 
-
-
-
+  async onOtpSubmit() {
+    if (this.otpForm.valid) {
+      try {
+        const otp = this.otpForm.value.otp;
+        if (this.email) {  // Asegúrate de que el email no sea undefined
+          const response = await this.registroService.verifyOtp(this.email, otp);
+          console.log('Verificación OTP exitosa:', response);
+          this.router.navigate(['/home']);
+        } else {
+          console.error('El email no está definido.');
+        }
+      } catch (error) {
+        console.error('Error en la verificación OTP:', error);
+      }
+    } else {
+      this.otpForm.markAllAsTouched();
+    }
+  }
 }
