@@ -1,16 +1,2 @@
-<div class="main-container">
-  <app-header></app-header>
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav mode="side" opened="false">
-      <!-- <mat-nav-list>
-        <a mat-list-item [routerLink]="['/']">Inicio</a>
-        <a mat-list-item [routerLink]="['/perfil']" *ngIf="isLoggedIn">Perfil</a>
-      </mat-nav-list> -->
-    </mat-sidenav>
 
-    <mat-sidenav-content>
-      <app-home></app-home> <router-outlet></router-outlet> 
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  <app-footer></app-footer>
-</div>
+<router-outlet></router-outlet>
