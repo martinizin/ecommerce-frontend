@@ -1,0 +1,27 @@
+/* login.component.css */
+
+mat-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-header {
+    text-align: center;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  button, a {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+mat-card-tittle{
+  text-align: center;
+}

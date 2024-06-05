@@ -1,0 +1,39 @@
+<h2 class="form-title">Nuevo Producto</h2>
+
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="createOrUpdate()" class="product-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>NOMBRE</mat-label>
+      <input matInput id="productName" type="text" placeholder="Nombre" formControlName="nomproducto">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>DESCRIPCIÓN</mat-label>
+      <input matInput id="description" type="text" placeholder="Descripción" formControlName="descripcionproducto">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>STOCK</mat-label>
+      <input matInput id="stock" type="number" placeholder="Stock" formControlName="stockproducto">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>PRECIO</mat-label>
+      <input matInput id="price" type="number" placeholder="Precio" formControlName="precioprducto">
+    </mat-form-field>
+
+    <div class="file-input">
+      <label>IMAGEN</label>
+      <input id="image" type="file" (change)="onFileChange($event)">
+    </div>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>CATEGORIA</mat-label>
+      <mat-select formControlName="categoria">
+        <mat-option *ngFor="let categoria of categoria" [value]="categoria">{{ categoria }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="form-buttons">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Añadir Producto</button>
+      <button mat-button type="button" (click)="cancel()">Cancelar</button>
+    </div>
+    
+  </form>
+</div>

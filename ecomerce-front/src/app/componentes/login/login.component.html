@@ -1,6 +1,7 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>Formulario de Login</mat-card-title>
+    <mat-card-title>ECOMMERCE LA TOLA</mat-card-title>
+    <mat-card-title>Bienvenido/a Ingrese sus datos:</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
@@ -22,5 +23,8 @@
 
       <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">Ingresar</button>
     </form>
+
+    <button mat-button color="accent" (click)="goToRegister()">Registrarse</button>
+    <a mat-button color="warn" (click)="goToResetContrasena()">¿Olvidaste tu contraseña?</a>
   </mat-card-content>
 </mat-card>

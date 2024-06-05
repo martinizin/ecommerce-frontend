@@ -1,0 +1,18 @@
+<div class="reset-password-container">
+  <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+    <h2>Cambio de contraseña</h2>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" formControlName="email" class="form-control" placeholder="Enter your email">
+      <div *ngIf="submitted && resetForm.controls['email'].errors" class="invalid-feedback">
+        <div *ngIf="resetForm.controls['email'].errors['required']">El campo es obligatorio</div>
+        <div *ngIf="resetForm.controls['email'].errors['email']">Proporcione una dirección email válida</div>
+      </div>
+    </div>
+    <button mat-button color="accent" (click)="goToReset()">Enviar</button>
+  </form>
+  <div *ngIf="success" class="alert alert-success">
+   Se ha enviado un correo con las instrucciones para recuperar su contraseña
+  </div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+</div>

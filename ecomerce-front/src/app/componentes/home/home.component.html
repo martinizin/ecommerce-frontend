@@ -1,9 +1,46 @@
-<div class="home-container">
-    <div class="category-links">
-      <a mat-button routerLink="/artesanias">Artesanías</a>
-      <a mat-button routerLink="/vestimenta">Vestimenta</a>
-      <a mat-button routerLink="/alimentos">Alimentos</a>
-      <a mat-button routerLink="/otros">Otros</a>
+<mat-sidenav-container class="main-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <!-- Lista de navegación -->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span>Mi Aplicación</span>
+      <span class="spacer"></span>
+      <div class="user-info" *ngIf="isLogged">
+        <mat-icon>person</mat-icon>
+        <span>{{ username }}</span> 
+        <div *ngIf="isLogged" class="user-actions">
+          <mat-form-field appearance="fill">
+            <mat-label>MENU</mat-label>
+            <mat-select>
+              <mat-option (click)="navigateToListar()">Mis Productos</mat-option>
+              <mat-option (click)="navigateToCreate()">Subir producto</mat-option>
+            </mat-select>
+       
+          </mat-form-field>
+        </div>
+       
+      </div>
+      <button mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+    </mat-toolbar>
+    <!-- Body content -->
+    <div class="body-content">
+      <div class="category-links">
+        <button mat-raised-button class="category-button">Artesanías</button>
+        <button mat-raised-button class="category-button">Alimentos</button>
+        <button mat-raised-button class="category-button">Vestimenta</button>
+        <button mat-raised-button class="category-button">Otros</button>
+      </div>
     </div>
-  </div>
-  
+    
+    <!-- Footer -->
+    <mat-toolbar color="primary" class="footer">
+      <span>© 2024 Mi Aplicación. Todos los derechos reservados.</span>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

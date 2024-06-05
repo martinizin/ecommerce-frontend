@@ -10,6 +10,7 @@ import { RegistroService } from '../../servicios/registro.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -39,15 +40,22 @@ export class RegistroComponent {
     this.formulario = new FormGroup({
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
-      rol: new FormControl(['CLIENTE'], Validators.required)
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$')
+      ]),
+      numero: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^09\\d{8}$') // La expresión regular para validar el número telefónico
+      ]),
+      rol: new FormControl('', Validators.required)
     });
 
     this.otpForm = new FormGroup({
       otp: new FormControl('', Validators.required)
     });
   }
-
   async onSubmit() {
     if (this.formulario.valid) {
       try {
@@ -68,10 +76,10 @@ export class RegistroComponent {
     if (this.otpForm.valid) {
       try {
         const otp = this.otpForm.value.otp;
-        if (this.email) {  // Asegúrate de que el email no sea undefined
+        if (this.email) {  
           const response = await this.registroService.verifyOtp(this.email, otp);
           console.log('Verificación OTP exitosa:', response);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
         } else {
           console.error('El email no está definido.');
         }
@@ -82,4 +90,5 @@ export class RegistroComponent {
       this.otpForm.markAllAsTouched();
     }
   }
+  
 }

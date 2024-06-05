@@ -8,11 +8,28 @@ import { LoginComponent } from './componentes/login/login.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistroComponent } from './componentes/registro/registro.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink,HeaderComponent,FooterComponent,HomeComponent, RegistroComponent,LoginComponent,MatSidenavContent,MatSidenav,MatSidenavContainer,HttpClientModule],
+  imports: [RouterOutlet,RouterLink,
+    HeaderComponent,FooterComponent,
+    HomeComponent, RegistroComponent,
+    LoginComponent,MatSidenavContent,
+    MatSidenav,MatSidenavContainer,
+    HttpClientModule,FormsModule,MatFormFieldModule,MatInputModule,MatButtonModule,
+  MatCardModule,MatSnackBarModule,ReactiveFormsModule,MatButton,MatIcon],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

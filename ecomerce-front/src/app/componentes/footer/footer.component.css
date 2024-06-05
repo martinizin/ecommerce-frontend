@@ -1,0 +1,8 @@
+.footer-toolbar {
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+  }
+  
+  .footer-text {
+    margin: 0; /* Elimina cualquier margen predeterminado */
+  }

@@ -1,0 +1,19 @@
+<div class="cambiar-contrasena-container">
+    <form [formGroup]="cambiarContrasenaForm" (ngSubmit)="onSubmit()">
+      <h2>Restablecer Contraseña</h2>
+      <div class="form-group">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" formControlName="password" class="form-control" placeholder="Ingrese su nueva contraseña">
+        <div *ngIf="submitted && cambiarContrasenaForm.controls['password'].errors" class="invalid-feedback">
+          <div *ngIf="cambiarContrasenaForm.controls['password'].errors['required']">La contraseña es requerida</div>
+          <div *ngIf="cambiarContrasenaForm.controls['password'].errors['minlength']">La contraseña debe tener al menos 6 caracteres</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+    <div *ngIf="success" class="alert alert-success">
+      Cambio de contraseña exitoso.
+    </div>
+    <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  </div>
+  
