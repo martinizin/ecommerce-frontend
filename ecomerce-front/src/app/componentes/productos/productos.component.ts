@@ -3,6 +3,9 @@ import { CrudProductosService } from '../../servicios/crud-productos.service';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { NgClass,NgFor,NgIf } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadImageDialogComponent } from '../upload-image-dialog/upload-image-dialog.component';
+import { ListadoProductosService } from '../../servicios/listado-productos.service';
 
 @Component({
   selector: 'app-producto',
@@ -17,7 +20,9 @@ export class ProductosComponent implements OnInit {
 
   constructor(
     private crudProductosService: CrudProductosService,
-    private router: Router
+    private listadoProductosService:ListadoProductosService,
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +52,7 @@ export class ProductosComponent implements OnInit {
     //   });
   }
 
+
   delete(id: number): void {
     this.crudProductosService.delete(id)
       .subscribe((response: any) => {
@@ -67,5 +73,30 @@ export class ProductosComponent implements OnInit {
 
   trackById(index: number, producto: any): number {
     return producto.id;
+  }
+  openUploadDialog(id: number): void {
+    const dialogRef = this.dialog.open(UploadImageDialogComponent, {
+      width: '400px',
+      data: { idProducto: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.uploadImage(id, result);
+      }
+    });
+  }
+
+  uploadImage(id: number, image: File): void {
+    this.crudProductosService.uploadImage(id, image).subscribe((response: any) => {
+      if (response) {
+        console.log('Imagen subida:', response);
+        this.actualizarListaProductos();
+      } else {
+        console.error('Error al subir la imagen: Token de autenticación faltante');
+      }
+    }, (error: any) => {
+      console.error('Error al subir la imagen:', error);
+    });
   }
 }

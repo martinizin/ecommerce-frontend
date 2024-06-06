@@ -86,6 +86,9 @@ export class HomeComponent implements OnInit {
   navigateToListar(): void {
     this.router.navigate(['/listar']);
   }
+  navigateToCatalogo(){
+    this.router.navigate(['/productos'])
+  }
   
   navigateToCrearCategoria():void{
     this.router.navigate(['/crear-categoria'])

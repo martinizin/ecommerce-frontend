@@ -1,1 +1,22 @@
-<p>clientes works!</p>
+<div class="product-list-container">
+    <h1 class="title">Catálogo de Productos</h1>
+    <div class="product-catalog">
+      <div class="product-card" *ngFor="let producto of productos">
+        <div class="product-image-container">
+          <img [src]="producto.imagenproducto" alt="Imagen del producto" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3>{{ producto.nomproducto }}</h3>
+          <p>{{ producto.descripcionproducto }}</p>
+          <p class="product-price">Precio: ${{ producto.precioprducto }}</p>
+          <button mat-raised-button color="primary" class="buy-button" (click)="comprarProducto(producto.id)">Comprar</button>
+          
+        </div>
+       
+      </div>
+    </div>
+    <div class="button-container">
+        <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
+      </div>
+  </div>
+  

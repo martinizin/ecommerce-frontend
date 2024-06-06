@@ -77,7 +77,7 @@ export class FormularioProductosComponent implements OnInit {
     formData.append('stockproducto', producto.stockproducto);
     formData.append('precioprducto', producto.precioprducto);
     formData.append('categoria', producto.categoria);
-    debugger;
+    
     // Append image file if exists
     if (this.imagen) {
       formData.append('imagen', this.imagen);

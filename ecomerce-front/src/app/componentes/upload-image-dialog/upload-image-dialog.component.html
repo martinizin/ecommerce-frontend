@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Subir Imagen</h1>
+<div mat-dialog-content>
+  <input type="file" (change)="onFileSelected($event)">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onUpload()">Subir</button>
+</div>

@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { UploadImageDialogComponent } from './componentes/upload-image-dialog/upload-image-dialog.component';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';

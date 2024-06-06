@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudProductosService {
   private baseUrl = 'http://localhost:8095/api/v1/producto';
+  private imagenUrl = 'http://localhost:8095/api/v1/imagen';
 
   constructor(private http: HttpClient) {}
 
@@ -80,5 +81,20 @@ export class CrudProductosService {
   delete(id: number): Observable<any> {
     const headers = this.getHeaders();
     return this.http.delete(`${this.baseUrl}/${id}`, { headers });
+  }
+  uploadImage(id: number, image: File): Observable<any> {
+    const token = this.obtenerToken();
+    if (!token) {
+      console.error('Token de autenticación faltante');
+      return of(null); // Devuelve un Observable nulo si no hay token
+    }
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const formData: FormData = new FormData();
+    formData.append('idimagen', `${id}`);
+    formData.append('nombreimagen', image.name);
+    formData.append('file', image, image.name);
+    return this.http.post(`${this.imagenUrl}/crear`, formData, { headers });
   }
 }

@@ -10,21 +10,25 @@
       </thead>
       <tbody>
         <tr *ngFor="let categoria of categorias">
-          <td>{{ categoria }}</td>
+          <td class="category-name">{{ categoria }}</td>
           <td>
-            <button mat-icon-button color="warn" (click)="eliminarCategoria(categoria)">
-              <mat-icon>delete</mat-icon>
-            </button>
+            <div class="delete-button" (click)="eliminarCategoria(categoria)">
+              <button mat-icon-button>
+                <mat-icon>delete</mat-icon>
+              </button>
+              <span>ELIMINAR CATEGORIA</span>
+            </div>
+            
           </td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="button-container">
-    <button mat-raised-button color="primary" type="button" (click)="agregarCategoria()">Añadir Categoría</button>
-    <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
+    <button mat-raised-button color="primary" class="add-button" type="button" (click)="agregarCategoria()">Añadir Categoría</button>
+    <button mat-raised-button color="accent" class="return-button" type="button" (click)="regresar()">Regresar</button>
   </div>
   <div class="input-container">
-    <input [(ngModel)]="nombreCategoria" placeholder="Nombre de la categoría" />
+    <input [(ngModel)]="nombreCategoria" class="category-input" placeholder="Nombre de la categoría" />
   </div>
 </div>

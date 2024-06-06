@@ -6,15 +6,17 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button mat-button [matMenuTriggerFor]="appMenu">
+      <button mat-button class="category-button" [matMenuTriggerFor]="appMenu">
         CATEGORIAS
       </button>
+      
       <mat-menu #appMenu="matMenu" class="app-menu">
         <button mat-menu-item class="menu-item">Artesanías</button>
         <button mat-menu-item class="menu-item">Alimentos</button>
         <button mat-menu-item class="menu-item">Vestimenta</button>
         <button mat-menu-item class="menu-item">Otros</button>
       </mat-menu>
+      
       <span class="spacer"></span>
       <div class="user-info" *ngIf="isLogged">
         <mat-icon>person</mat-icon>
@@ -22,14 +24,19 @@
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item (click)="navigateToListar()" *ngIf="isEmprendedor">MIS PRODUCTOS</button>
           <button mat-menu-item (click)="navigateToCreate()"*ngIf="isEmprendedor">SUBIR PRODUCTO</button>
-          <button mat-menu-item (click)="navigateToCrearCategoria()"*ngIf="isAdmin">AÑADIR CATEGORIA</button>
+          <button mat-menu-item (click)="navigateToCreate()"*ngIf="isEmprendedor">MIS VENTAS</button>
+          <button mat-menu-item (click)="navigateToCrearCategoria()"*ngIf="isAdmin">GESTIONAR CATEGORIAS</button>
+          <button mat-menu-item (click)="navigateToListar()"*ngIf="isAdmin">GESTIONAR PRODUCTOS</button>
           <button mat-menu-item (click)="navigateToMisCompras()"*ngIf="isProCliente">MIS COMPRAS</button>
+          <button mat-menu-item (click)="navigateToCatalogo()"*ngIf="isProCliente">VER PRODUCTOS</button>
         </mat-menu>
       </div>
-      <button mat-button (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        Cerrar Sesión
+      <button mat-button class="logout-button" (click)="logout()">
+        <mat-icon class="logout-icon">logout</mat-icon>
+        <span class="logout-text">Cerrar Sesión</span>
       </button>
+      
+      
     </mat-toolbar>
     <!-- Body content -->
     <div class="body-content">

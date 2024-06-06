@@ -21,6 +21,56 @@
 .mat-sidenav-container {
   height: 100%;
 }
+.menu-item {
+  background-color: transparent;
+  color: #333;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
+}
+
+.category-button {
+  margin: 0 0.5rem;
+  background-color: transparent;
+  border: 2px solid #3f51b5;
+  border-radius: 5px;
+  color: #3f51b5;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.category-button:hover {
+  background-color: #3f51b5;
+  color: #fff;
+}
+.logout-button {
+  margin: 0 0.5rem;
+  background-color: transparent;
+  border: 2px solid #ff1744; /* Color rojo */
+  border-radius: 5px;
+  color: #ff1744; /* Color rojo */
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #ff1744; /* Color rojo */
+  color: #fff;
+}
+
+.logout-icon {
+  vertical-align: middle;
+}
+
+.logout-text {
+  vertical-align: middle;
+  margin-left: 0.5rem; /* Ajuste de margen entre el icono y el texto */
+}
+
+
 
 /* Styles for the toolbar */
 mat-toolbar {

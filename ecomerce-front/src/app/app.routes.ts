@@ -9,6 +9,8 @@ import { AuthGuard } from './auth.guard';
 import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { Roles } from './modelos/roles';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
+import { RealizarCompraComponent } from './componentes/realizar-compra/realizar-compra.component';
 
 export const routes: Routes = [
     {path :'',redirectTo:'login',pathMatch:'full'},
@@ -20,7 +22,10 @@ export const routes: Routes = [
     {path: 'listar',component:ProductosComponent},
     {path: 'listar-id',component:ProductosComponent},
     {path: 'crear',component:FormularioProductosComponent},
-    {path: 'modificar/:id',component:FormularioProductosComponent}, //:id simboliza el id en 'modificar/id' en ruta
+    {path: 'modificar/:id',component:FormularioProductosComponent},
+    {path:'productos',component:ClientesComponent},
+    {path:'realizar-compra',component:RealizarCompraComponent},
+    //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},
     {path: 'mis-compras',component:ProductosComponent},
    // { path: 'Home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },

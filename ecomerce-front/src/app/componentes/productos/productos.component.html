@@ -36,6 +36,9 @@
             <button mat-icon-button color="warn" (click)="delete(producto.id)">
               <mat-icon>delete</mat-icon>
             </button>
+            <button mat-icon-button color="accent" (click)="openUploadDialog(producto.id)">
+              <mat-icon>cloud_upload</mat-icon>
+            </button>
           </td>
         </tr>
       </tbody>
