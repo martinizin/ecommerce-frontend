@@ -13,38 +13,40 @@ import { NgClass,NgFor,NgIf } from '@angular/common';
 })
 export class ProductosComponent implements OnInit {
   productos: any[] = [];
+  username:string="";
 
   constructor(
     private crudProductosService: CrudProductosService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.crudProductosService.list()
-      .subscribe((productos: any) => {
-        this.productos = productos;
-      });
+    this.username = localStorage.getItem('username')|| ''; //obtiene el item username sino (||) trae vacio
+    this.actualizarListaProductos();
   }
 
   nuevoProducto(): void {
     this.router.navigate(['/crear']);
   }
+
   regresar(): void {
     this.router.navigate(['/home']);
   }
 
-  update(id: number, nuevoProducto: any): void {
-    this.crudProductosService.update(id, nuevoProducto)
-      .subscribe((response: any) => {
-        // Manejar la respuesta si es necesario
-        console.log('Producto actualizado:', response);
-        // Puedes recargar la lista de productos después de la actualización
-        this.actualizarListaProductos();
-      }, (error: any) => {
-        // Manejar el error si ocurre
-        console.error('Error al actualizar el producto:', error);
-      });
+  update(id:number): void {
+    this.router.navigate(['/modificar', id]);
+    // this.crudProductosService.update(id, nuevoProducto)
+    //   .subscribe((response: any) => {
+    //     // Manejar la respuesta si es necesario
+    //     console.log('Producto actualizado:', response);
+    //     // Puedes recargar la lista de productos después de la actualización
+    //     this.actualizarListaProductos();
+    //   }, (error: any) => {
+    //     // Manejar el error si ocurre
+    //     console.error('Error al actualizar el producto:', error);
+    //   });
   }
+
   delete(id: number): void {
     this.crudProductosService.delete(id)
       .subscribe((response: any) => {
@@ -55,10 +57,11 @@ export class ProductosComponent implements OnInit {
       });
   }
 
-  private actualizarListaProductos(): void {
-    this.crudProductosService.list()
+  actualizarListaProductos(): void {
+    this.crudProductosService.listarporId()
       .subscribe((productos: any) => {
-        this.productos = productos;
+        this.productos = productos.filter((x:any)=> x.user.username == this.username); //
+        console.log(this.productos);
       });
   }
 

@@ -1,0 +1,75 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+mat-raised-button {
+  background-color: #2196f3;
+  color: white;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+mat-raised-button:hover {
+  background-color: #0d47a1;
+}
+
+mat-icon-button {
+  transition: transform 0.3s ease;
+}
+
+mat-icon-button:hover {
+  transform: scale(1.1);
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.categoria-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.categoria-table th,
+.categoria-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.categoria-table th {
+  background-color: #f2f2f2;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-in-out {
+  animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-out;
+}

@@ -1,47 +1,4 @@
-/* General styles for the layout */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.spacer {
-  flex: 1;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-right: 16px;
-}
-
-.user-info mat-icon {
-  margin-right: 8px;
-}
-
-mat-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Centra verticalmente el contenido */
-  padding: 0 20px; /* Añade espacio en los extremos */
-}
-
-button[mat-button] {
-  display: flex;
-  align-items: center;
-}
-
-button[mat-button] mat-icon {
-  margin-right: 8px;
-}
-
+/* Background image for the body */
 .body-content {
   display: flex;
   flex-direction: column;
@@ -54,28 +11,91 @@ button[mat-button] mat-icon {
   background-image: url('/assets/logoHome.png'); /* Corrige la ruta de la imagen */
 }
 
-.category-links {
+.main-container {
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  justify-content: space-around;
-  width: 100%;
-  gap: 20px;
-  margin-top: 20px;
+  flex-direction: column;
 }
 
-.category-button {
-  background-color: #2196F3; /* Azul Material Design */
-  color: white;
-  padding: 10px 20px; /* Tamaño mediano */
-  border-radius: 4px;
-  text-decoration: none;
+.mat-sidenav-container {
+  height: 100%;
 }
 
-.footer {
+/* Styles for the toolbar */
+mat-toolbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 64px; /* Height of the footer */
-  flex-shrink: 0;
-  background-color: #3f51b5; /* Same color as the primary toolbar */
-  color: white;
+}
+
+/* Spacer to push user info to the right */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Introductory section styles */
+.intro-section {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
+}
+
+.intro-section h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.intro-section p {
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* Menu styles */
+.mat-menu-content {
+  background-color: #2196F3; /* Blue background */
+  color: white; /* White text */
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out; /* Smooth transition for transform */
+}
+
+.mat-menu-item {
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.mat-menu-item:hover {
+  background-color: #1976D2; /* Darker blue on hover */
+}
+
+/* User menu styles */
+.user-menu .mat-form-field {
+  width: 200px;
+}
+
+.user-info button {
+  color: white; /* White text */
+  background: none; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Styles for the category buttons */
+.category-button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  margin: 5px;
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.category-button:hover {
+  background-color: #388E3C; /* Darker green on hover */
+}
+
+/* Styles for the footer */
+.footer {
+  text-align: center;
 }

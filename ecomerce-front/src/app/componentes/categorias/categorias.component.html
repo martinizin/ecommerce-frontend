@@ -1,1 +1,30 @@
-<p>categorias works!</p>
+<div class="categoria-list-container">
+  <h1 class="title">Listado de Categorías</h1>
+  <div class="table-container">
+    <table class="categoria-table">
+      <thead>
+        <tr>
+          <th>NOMBRE</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let categoria of categorias">
+          <td>{{ categoria }}</td>
+          <td>
+            <button mat-icon-button color="warn" (click)="eliminarCategoria(categoria)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="button" (click)="agregarCategoria()">Añadir Categoría</button>
+    <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
+  </div>
+  <div class="input-container">
+    <input [(ngModel)]="nombreCategoria" placeholder="Nombre de la categoría" />
+  </div>
+</div>

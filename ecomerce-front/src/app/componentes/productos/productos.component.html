@@ -26,11 +26,11 @@
           <td>{{producto.nomproducto}}</td>
           <td>{{producto.descripcionproducto}}</td>
           <td>{{producto.stockproducto}}</td>
-          <td>{{producto.precioproducto}}</td>
+          <td>{{producto.precioprducto}}</td>
           <td><img [src]="producto.imagenproducto" alt="Imagen del producto" class="product-image"></td>
           <td>{{producto.categoria}}</td>
           <td>
-            <button mat-icon-button color="primary" (click)="update(producto.id, nuevoProducto)">
+            <button mat-icon-button color="primary" (click)="update(producto.id)">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-icon-button color="warn" (click)="delete(producto.id)">

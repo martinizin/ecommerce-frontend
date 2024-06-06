@@ -11,32 +11,41 @@ export class CrudProductosService {
   constructor(private http: HttpClient) {}
 
   private getHeaders(): HttpHeaders {
-    if (typeof localStorage !== 'undefined') {
-      const token = localStorage.getItem('token');
-      if (token) {
-        return new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      }
+    const token = this.obtenerToken();
+    if (token) {
+      return new HttpHeaders().set('Authorization', `Bearer ${token}`);
     }
     return new HttpHeaders();
   }
-  private obtenerToken(): string{
-    return localStorage.getItem('token') || '';
+
+  private obtenerToken(): string {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem('token') || '';
+    }
+    return '';
   }
 
   list(): Observable<any> {
     const token = this.obtenerToken();
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
     return this.http.get(`${this.baseUrl}/listar`, { headers });
   }
-  
+
+  listarporId(): Observable<any> {
+    const token = this.obtenerToken();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/listar`, { headers });
+  }
 
   get(id: number): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.get(`${this.baseUrl}/listar/${id}`, { headers });
+    return this.http.get(`${this.baseUrl}/${id}`, { headers });
   }
 
   create(producto: FormData): Observable<any> {
@@ -55,20 +64,18 @@ export class CrudProductosService {
     return this.http.put(`${this.baseUrl}/${id}`, producto, { headers });
   }
 
+  // Métodos para actualizar productos
+  private idProductoActualizando = new BehaviorSubject<number>(0);
 
+  // Se enviará el identificador adquirido al registro del usuario
+  enviarIdentificador(dato: number): void {
+    this.idProductoActualizando.next(dato);
+  }
 
-    //Metodos para actualizar productos
- private idProductoActualizando = new
- BehaviorSubject<number>(0);
-// se  enviara el Identificador adquirido al registro del usuario 
- enviarIdentificador(dato: number): void{
-   this.idProductoActualizando.next(dato);
- }
-//recibe el Identificador adquierido en Registro 
- obtenerIdentificador(): Observable<number>{
-   return this.idProductoActualizando.asObservable();  
- }
- 
+  // Recibe el identificador adquirido en registro
+  obtenerIdentificador(): Observable<number> {
+    return this.idProductoActualizando.asObservable();
+  }
 
   delete(id: number): Observable<any> {
     const headers = this.getHeaders();

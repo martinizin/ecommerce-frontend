@@ -14,7 +14,7 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { RegistroService } from '../../servicios/registro.service';
 import { MatLabel } from '@angular/material/form-field';
-
+import { MatMenuModule } from '@angular/material/menu';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -23,7 +23,7 @@ import { MatLabel } from '@angular/material/form-field';
     MatSidenavContent, MatIcon,
     MatSidenav, MatList,
     MatNavList, CommonModule, NgIf, MatOption,
-    MatFormField, MatSelect,MatLabel, 
+    MatFormField, MatSelect,MatLabel, MatMenuModule,
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -36,6 +36,11 @@ export class HomeComponent implements OnInit {
   selectedOption: any;
   isLogged: boolean = false;
   showUploadButton: boolean = false;
+  Roles: string[] = [];
+  Role:string|null="";
+  isEmprendedor:boolean=false;
+  isAdmin:boolean=false;
+  isProCliente:boolean=false;
 
   constructor() {}
 
@@ -43,12 +48,28 @@ export class HomeComponent implements OnInit {
     this.isLogged = this.isLoggedIn();
     if (this.isLogged) {
       this.username = this.registroService.getUsername();
-     
+      this.Role = localStorage.getItem('rol');
+
+      switch(this.Role){
+        case 'ROLE_EMPRENDEDOR':
+        this.isEmprendedor=true;
+        break;
+        case 'ROLE_ADMIN':
+        this.isAdmin=true;
+        break;case 'ROLE_CLIENT':
+        this.isProCliente=true;
+        break;
+
+      }
+      console.log(this.Role);
     }
   }
 
   isLoggedIn(): boolean {
     return this.registroService.loggedIn();
+  }
+  hasRole(role: string): boolean {
+    return this.Roles.includes(role);
   }
 
   logout(): void {
@@ -64,6 +85,13 @@ export class HomeComponent implements OnInit {
   }
   navigateToListar(): void {
     this.router.navigate(['/listar']);
+  }
+  
+  navigateToCrearCategoria():void{
+    this.router.navigate(['/crear-categoria'])
+  }
+  navigateToMisCompras():void{
+    this.router.navigate(['/mis-compras'])
   }
 
 }

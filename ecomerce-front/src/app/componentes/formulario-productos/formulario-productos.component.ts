@@ -53,6 +53,7 @@ export class FormularioProductosComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.productoId = +params['id'];
+        console.log("llegue1");
         this.isEditing = true;
         this.loadProduct();
       }
@@ -76,7 +77,7 @@ export class FormularioProductosComponent implements OnInit {
     formData.append('stockproducto', producto.stockproducto);
     formData.append('precioprducto', producto.precioprducto);
     formData.append('categoria', producto.categoria);
-
+    debugger;
     // Append image file if exists
     if (this.imagen) {
       formData.append('imagen', this.imagen);
@@ -106,8 +107,10 @@ export class FormularioProductosComponent implements OnInit {
 
   loadProduct() {
     if (this.productoId) {
+      console.log(this.productoId);
       this.crudService.get(this.productoId).subscribe(
         response => {
+          console.log(response);
           this.form.patchValue(response);
         },
         error => {
