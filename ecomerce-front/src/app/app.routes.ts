@@ -11,6 +11,7 @@ import { Roles } from './modelos/roles';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { RealizarCompraComponent } from './componentes/realizar-compra/realizar-compra.component';
+import path from 'node:path';
 
 export const routes: Routes = [
     {path :'',redirectTo:'login',pathMatch:'full'},
@@ -28,5 +29,6 @@ export const routes: Routes = [
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},
     {path: 'mis-compras',component:ProductosComponent},
+    {path: 'listar-usuarios',component:ClientesComponent}
    // { path: 'Home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },
 ];

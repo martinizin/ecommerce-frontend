@@ -27,7 +27,7 @@
           <td>{{producto.descripcionproducto}}</td>
           <td>{{producto.stockproducto}}</td>
           <td>{{producto.precioprducto}}</td>
-          <td><img [src]="producto.imagenproducto" alt="Imagen del producto" class="product-image"></td>
+          <td><img src="{{producto.imageUrl}}" alt="Imagen del producto" class="product-image"></td>
           <td>{{producto.categoria}}</td>
           <td>
             <button mat-icon-button color="primary" (click)="update(producto.id)">

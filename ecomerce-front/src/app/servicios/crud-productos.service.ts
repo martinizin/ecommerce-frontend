@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 })
 export class CrudProductosService {
   private baseUrl = 'http://localhost:8095/api/v1/producto';
-  private imagenUrl = 'http://localhost:8095/api/v1/imagen';
+  private imagenUrl = 'http://localhost:8095/api/v1/producto/image';
 
   constructor(private http: HttpClient) {}
 
@@ -82,6 +82,8 @@ export class CrudProductosService {
     const headers = this.getHeaders();
     return this.http.delete(`${this.baseUrl}/${id}`, { headers });
   }
+
+
   uploadImage(id: number, image: File): Observable<any> {
     const token = this.obtenerToken();
     if (!token) {
@@ -91,10 +93,10 @@ export class CrudProductosService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    const formData: FormData = new FormData();
-    formData.append('idimagen', `${id}`);
-    formData.append('nombreimagen', image.name);
-    formData.append('file', image, image.name);
-    return this.http.post(`${this.imagenUrl}/crear`, formData, { headers });
+    const formData = new FormData();
+    formData.append('file', image); // Usar 'file' como nombre de parámetro
+    return this.http.post<any>(`${this.imagenUrl}/${id}`, formData, { headers }); // Usar la ruta correcta para el endpoint en el backend
   }
+  
+
 }

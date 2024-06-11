@@ -68,10 +68,7 @@ export class HomeComponent implements OnInit {
   isLoggedIn(): boolean {
     return this.registroService.loggedIn();
   }
-  hasRole(role: string): boolean {
-    return this.Roles.includes(role);
-  }
-
+  
   logout(): void {
     this.registroService.logoutUser();
     this.router.navigate(['/login']);
@@ -95,6 +92,9 @@ export class HomeComponent implements OnInit {
   }
   navigateToMisCompras():void{
     this.router.navigate(['/mis-compras'])
+  }
+  navigateToListarUsuarios(){
+    this.router.navigate(['/listar-usuarios'])
   }
 
 }

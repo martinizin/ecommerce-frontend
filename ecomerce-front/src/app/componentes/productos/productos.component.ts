@@ -88,15 +88,14 @@ export class ProductosComponent implements OnInit {
   }
 
   uploadImage(id: number, image: File): void {
-    this.crudProductosService.uploadImage(id, image).subscribe((response: any) => {
-      if (response) {
+    this.crudProductosService.uploadImage(id, image).subscribe(
+      response => {
         console.log('Imagen subida:', response);
-        this.actualizarListaProductos();
-      } else {
-        console.error('Error al subir la imagen: Token de autenticación faltante');
+      },
+      error => {
+        console.error('Error al subir la imagen:', error);
       }
-    }, (error: any) => {
-      console.error('Error al subir la imagen:', error);
-    });
+    );
   }
+  
 }

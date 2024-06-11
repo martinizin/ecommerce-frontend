@@ -28,17 +28,18 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./formulario-productos.component.css']
 })
 export class FormularioProductosComponent implements OnInit {
-  private fb = inject(FormBuilder);
-  private crudService = inject(CrudProductosService);
-  private route = inject(ActivatedRoute);
-  router = inject(Router);
   form: FormGroup;
   categoria: string[] = ['ARTESANIAS', 'ALIMENTOS', 'ROPA', 'OTROS'];
-  imagen!: File;
-  productoId?: number;
+  imagen: File | undefined;
+  productoId: number | undefined;
   isEditing = false;
 
-  constructor() {
+  constructor(
+    private fb: FormBuilder,
+    private crudService: CrudProductosService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.form = this.fb.group({
       nomproducto: ['', [Validators.required]],
       descripcionproducto: ['', [Validators.required]],
@@ -53,19 +54,18 @@ export class FormularioProductosComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.productoId = +params['id'];
-        console.log("llegue1");
         this.isEditing = true;
         this.loadProduct();
       }
     });
   }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.imagen = file;
     }
   }
-
 
   createOrUpdate() {
     const formData = new FormData();
@@ -104,17 +104,17 @@ export class FormularioProductosComponent implements OnInit {
       );
     }
   }
+  
 
   loadProduct() {
     if (this.productoId) {
-      console.log(this.productoId);
       this.crudService.get(this.productoId).subscribe(
         response => {
-          console.log(response);
           this.form.patchValue(response);
         },
         error => {
           console.error('Error al cargar el producto:', error);
+          // Manejar el error, mostrar mensaje al usuario, etc.
         }
       );
     }
@@ -129,6 +129,7 @@ export class FormularioProductosComponent implements OnInit {
         },
         error => {
           console.error('Error al eliminar el producto:', error);
+          // Manejar el error, mostrar mensaje al usuario, etc.
         }
       );
     }
@@ -137,4 +138,29 @@ export class FormularioProductosComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/listar']);
   }
-}
+
+  private prepareFormData(): FormData {
+    const producto = this.form.value;
+    const formData = new FormData();
+    formData.append('nomproducto', producto.nomproducto);
+    formData.append('descripcionproducto', producto.descripcionproducto);
+    formData.append('stockproducto', producto.stockproducto);
+    formData.append('precioprducto', producto.precioprducto);
+    formData.append('categoria', producto.categoria);
+    return formData;
+  }
+
+  private uploadImage(productoId: number, image: File): void {
+    this.crudService.uploadImage(productoId, image).subscribe(
+      response => {
+        console.log('Imagen subida correctamente:', response);
+      },
+      error => {
+        console.error('Error al subir la imagen:', error);
+        // Manejar el error, mostrar mensaje al usuario, etc.
+      }
+    );
+  }
+  
+
+  }

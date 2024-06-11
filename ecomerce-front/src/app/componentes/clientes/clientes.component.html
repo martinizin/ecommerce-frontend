@@ -3,13 +3,13 @@
     <div class="product-catalog">
       <div class="product-card" *ngFor="let producto of productos">
         <div class="product-image-container">
-          <img [src]="producto.imagenproducto" alt="Imagen del producto" class="product-image">
+          <td><img src="{{producto.imageUrl}}" alt="Imagen del producto" class="product-image"></td>
         </div>
         <div class="product-info">
           <h3>{{ producto.nomproducto }}</h3>
           <p>{{ producto.descripcionproducto }}</p>
           <p class="product-price">Precio: ${{ producto.precioprducto }}</p>
-          <button mat-raised-button color="primary" class="buy-button" (click)="comprarProducto(producto.id)">Comprar</button>
+          <button mat-raised-button color="primary" class="buy-button" (click)="comprarProducto()">Comprar</button>
           
         </div>
        

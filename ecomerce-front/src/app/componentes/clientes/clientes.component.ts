@@ -37,8 +37,8 @@ export class ClientesComponent implements OnInit {
       });
   };
 
-  comprarProducto(id:number):void{
-    this.realizarCompraService.getProductDetails
+  comprarProducto():void{
+   this.router.navigate(['/realizar-compra'])
       
   }
 
