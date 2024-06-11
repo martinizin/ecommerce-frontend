@@ -28,15 +28,20 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   }
   
-  .product-image-container {
-    text-align: center;
-  }
-  
-  .product-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
+ .product-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Ajusta según sea necesario */
+}
+
+.product-image {
+  width: 150px; /* Ajusta el ancho deseado */
+  height: 150px; /* Ajusta la altura deseada */
+  object-fit: cover; /* Mantiene la proporción de la imagen mientras llena el área definida */
+  border-radius: 10px;
+}
+
   
   .product-info {
     padding: 10px 0;
