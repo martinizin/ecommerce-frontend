@@ -1,0 +1,68 @@
+<!-- <table class="table-container">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>EMAIL</th>
+        <th>NOMBRE</th>
+        <th>NUMERO</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td class="category-name">{{ user.id }}</td>
+        <td class="category-name">{{ user.email }}</td>
+        <td class="category-name">{{ user.username }}</td>
+        <td class="category-name">{{ user.numero }}</td>
+        <td>
+          <div class="delete-button" (click)="eliminarUsuario(user.id)">
+            <button mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+            <span>ELIMINAR USUARIO</span>
+          </div>
+          
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+  <div>
+    <mat-toolbar color="primary">
+      <span>Gestión de Usuarios</span>
+    </mat-toolbar>
+    <div class="table-container">
+      <table mat-table  class="mat-elevation-z8">
+  
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>EMAIL</th>
+            <th>NOMBRE</th>
+            <th>NUMERO</th>
+            <th>ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td class="category-name">{{ user.id }}</td>
+            <td class="category-name">{{ user.email }}</td>
+            <td class="category-name">{{ user.username }}</td>
+            <td class="category-name">{{ user.numero }}</td>
+            <td>
+              <div class="delete-button" (click)="eliminarUsuario(user.id)">
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+                <span>ELIMINAR USUARIO</span>
+              </div> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="button-container">
+        <button mat-raised-button color="accent" class="return-button" type="button" (click)="regresar()">Regresar</button>
+      </div>
+    </div>
+  </div>
+  

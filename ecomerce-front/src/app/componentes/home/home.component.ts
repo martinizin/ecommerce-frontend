@@ -15,6 +15,8 @@ import { MatSelect } from '@angular/material/select';
 import { RegistroService } from '../../servicios/registro.service';
 import { MatLabel } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { CrudProductosService } from '../../servicios/crud-productos.service';
+import { ListadoUsuariosService } from '../../servicios/listado-usuarios.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -31,6 +33,8 @@ import { MatMenuModule } from '@angular/material/menu';
 
 export class HomeComponent implements OnInit {
   registroService = inject(RegistroService);
+  crudService=inject(CrudProductosService)
+  listadoUsuarios=inject(ListadoUsuariosService)
   router = inject(Router);
   username: string | null = null;
   selectedOption: any;
@@ -95,6 +99,9 @@ export class HomeComponent implements OnInit {
   }
   navigateToListarUsuarios(){
     this.router.navigate(['/listar-usuarios'])
+  }
+  navigateToListProducts(){
+    this.router.navigate(['/todos-productos']);
   }
 
 }

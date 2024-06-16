@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { response } from 'express';
-import { catchError } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AgregarCategoriasService {
-
-  private baseUrl = 'http://localhost:8095/api/v1/categoria';
+export class ListadoUsuariosService {
+  private baseUrl = 'http://localhost:8095';
 
   constructor(private http: HttpClient) { }
 
@@ -26,38 +23,22 @@ export class AgregarCategoriasService {
   }
 
 
-  listarCategorias(): Observable<any> {
+  listarUsuarios(): Observable<any> {
     const token = this.obtenerToken();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.baseUrl}/listar`, { headers });
+    return this.http.get(`${this.baseUrl}/users`, { headers });
   }
   
-
-  agregarCategoria(nombre: string): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.post(`${this.baseUrl}/add/${nombre}`, null, { headers, responseType: 'text' })
-      .pipe(
-        catchError((error: any) => {
-          console.error('Error al agregar categoría:', error);
-          throw error;
-        })
-      );
-  }
-
-  eliminarCategoria(nombreCategoria: string): Observable<any> {
+  eliminarUsuario(id: number): Observable<any> {
     const token = localStorage.getItem('token') || ''; // Obtener el token del almacenamiento local
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post(`${this.baseUrl}/delete/${nombreCategoria}`, null, { headers });
+    return this.http.delete(`${this.baseUrl}/user/${id}`);
+    
   }
-
-  
-  // Función que maneja la eliminación y recarga de la página
-  
-  
 }

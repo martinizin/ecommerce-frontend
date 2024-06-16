@@ -154,6 +154,7 @@ export class FormularioProductosComponent implements OnInit {
     this.crudService.uploadImage(productoId, image).subscribe(
       response => {
         console.log('Imagen subida correctamente:', response);
+        
       },
       error => {
         console.error('Error al subir la imagen:', error);
@@ -161,6 +162,7 @@ export class FormularioProductosComponent implements OnInit {
       }
     );
   }
+  
   
 
   }

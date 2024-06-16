@@ -1,37 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CrudProductosService } from '../../servicios/crud-productos.service';
-import { Router } from '@angular/router';
-import { MatIcon } from '@angular/material/icon';
-import { NgClass,NgFor,NgIf } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { UploadImageDialogComponent } from '../upload-image-dialog/upload-image-dialog.component';
 import { ListadoProductosService } from '../../servicios/listado-productos.service';
+import { Router } from '@angular/router';
+import { NgFor } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-producto',
-  standalone:true,
-  imports:[MatIcon,NgClass,NgFor,NgIf],
-  templateUrl: './productos.component.html',
-  styleUrls: ['./productos.component.css']
+  selector: 'app-listado-productos',
+  standalone: true,
+  imports: [NgFor,MatIcon],
+  templateUrl: './listado-productos.component.html',
+  styleUrl: './listado-productos.component.css'
 })
-export class ProductosComponent implements OnInit {
+export class ListadoProductosComponent {
   productos: any[] = [];
   username:string="";
 
   constructor(
+    private listadoProductosService: ListadoProductosService,
     private crudProductosService: CrudProductosService,
-    private listadoProductosService:ListadoProductosService,
     private router: Router,
-    private dialog: MatDialog
+
   ) {}
 
   ngOnInit(): void {
     this.username = localStorage.getItem('username')|| ''; //obtiene el item username sino (||) trae vacio
     this.actualizarListaProductos();
-  }
-
-  nuevoProducto(): void {
-    this.router.navigate(['/crear']);
   }
 
   regresar(): void {
@@ -52,7 +46,6 @@ export class ProductosComponent implements OnInit {
     //   });
   }
 
-
   delete(id: number): void {
     this.crudProductosService.delete(id)
       .subscribe((response: any) => {
@@ -66,45 +59,20 @@ export class ProductosComponent implements OnInit {
   actualizarListaProductos(): void {
     this.crudProductosService.listarporId()
       .subscribe((productos: any) => {
-        this.productos = productos.filter((x:any)=> x.user.username == this.username); //
+        this.productos = productos //
         console.log(this.productos);
       });
   }
+  listarProductos(token: string): void {
+    this.listadoProductosService.listarProductos(token)
+      .subscribe((productos: any[]) => {
+        this.productos = productos;
+      });
+  };
 
   trackById(index: number, producto: any): number {
     return producto.id;
   }
-
-  openUploadDialog(id: number): void {
-    const dialogRef = this.dialog.open(UploadImageDialogComponent, {
-      width: '400px',
-      data: { idProducto: id }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.uploadImage(id, result);
-        this.refreshrl();
-      }
-    });
-   
-  }
-
-  uploadImage(id: number, image: File): void {
-    this.crudProductosService.uploadImage(id, image).subscribe(
-      response => {
-        console.log('Imagen subida:', response);
-        //this.refreshrl();
-      },
-      error => {
-        console.error('Error al subir la imagen:', error);
-        this.refreshrl();
-      }
-    );
-  }
-  refreshrl(){
-    const currentUrl = this.router.url; this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => { 
-      this.router.navigate([currentUrl]); });
-  }
-  
+ 
 }
+

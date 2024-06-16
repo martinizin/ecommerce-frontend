@@ -12,6 +12,9 @@ import { CategoriasComponent } from './componentes/categorias/categorias.compone
 import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { RealizarCompraComponent } from './componentes/realizar-compra/realizar-compra.component';
 import path from 'node:path';
+import { GestionUsuariosComponent } from './componentes/gestion-usuarios/gestion-usuarios.component';
+import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado-usuarios.component';
+import { ListadoProductosComponent } from './componentes/listado-productos/listado-productos.component';
 
 export const routes: Routes = [
     {path :'',redirectTo:'login',pathMatch:'full'},
@@ -24,11 +27,13 @@ export const routes: Routes = [
     {path: 'listar-id',component:ProductosComponent},
     {path: 'crear',component:FormularioProductosComponent},
     {path: 'modificar/:id',component:FormularioProductosComponent},
+    {path: 'modificar',component:FormularioProductosComponent},
     {path:'productos',component:ClientesComponent},
     {path:'realizar-compra',component:RealizarCompraComponent},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},
     {path: 'mis-compras',component:ProductosComponent},
-    {path: 'listar-usuarios',component:ClientesComponent}
+    {path: 'listar-usuarios',component:ListadoUsuariosComponent},
+    {path:'todos-productos',component:ListadoProductosComponent}
    // { path: 'Home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },
 ];

@@ -55,16 +55,23 @@ export class CategoriasComponent implements OnInit {
       this.categoriaService.eliminarCategoria(nombre).subscribe(
         response => {
           console.log('Categoría eliminada exitosamente:', response);
-          this.listarCategorias();
+          // Recargar la página después de eliminar la categoría
+          location.reload();
         },
         error => {
           console.error('Error al eliminar categoría:', error);
+          this.refreshrl();
         }
       );
     } else {
       console.error('El nombre de la categoría no puede estar vacío');
     }
   }
+  refreshrl(){
+    const currentUrl = this.router.url; this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => { 
+      this.router.navigate([currentUrl]); });
+  }
+
 
   regresar() {
     this.router.navigate(['/home'])

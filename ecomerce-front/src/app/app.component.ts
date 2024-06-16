@@ -20,6 +20,7 @@ import { UploadImageDialogComponent } from './componentes/upload-image-dialog/up
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { GestionUsuariosComponent } from './componentes/gestion-usuarios/gestion-usuarios.component';
 
 
 @Component({

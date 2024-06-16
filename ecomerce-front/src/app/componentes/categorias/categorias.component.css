@@ -88,8 +88,8 @@
 }
 
 .delete-button {
-  color: #fff;
-  background-color: #f44336;
+  color: black;
+
   padding: 4px;
   border-radius: 50%;
 }
@@ -106,14 +106,14 @@
 }
 .delete-button {
   display: flex;
-  align-items: center;
-  border: 1px solid #2196f3; /* Borde cuadrado azul */
+  align-items: center;/* Borde cuadrado azul */
   border-radius: 4px; /* Borde redondeado */
   padding: 5px; /* Espaciado interno */
 }
 
 .delete-button mat-icon {
-  margin-right: 5px; /* Espacio entre el icono y el texto */
+  margin-right: 5px;
+  color: red; /* Espacio entre el icono y el texto */
 }
 
 .delete-button span {

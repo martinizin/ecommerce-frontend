@@ -1,0 +1,42 @@
+<div class="product-list-container">
+  <h1 class="title">Listado de Productos</h1>
+  <div class="table-container">
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NOMBRE</th>
+          <th>DESCRIPCIÓN</th>
+          <th>STOCK</th>
+          <th>PRECIO</th>
+          <th>IMAGEN</th>
+          <th>CATEGORIA</th>
+          <th>EMPRENDEDOR</th>
+          <th>ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos; let i = index; trackBy: trackById">
+          <td>{{producto.id}}</td>
+          <td>{{producto.nomproducto}}</td>
+          <td>{{producto.descripcionproducto}}</td>
+          <td>{{producto.stockproducto}}</td>
+          <td>{{producto.precioprducto}}</td>
+          
+          <td><img src="{{producto.imageUrl}}" alt="Imagen del producto" class="product-image"></td>
+
+          <td>{{producto.categoria}}</td>
+          <td>{{producto.username}}</td>
+          <td>
+            <button mat-icon-button color="warn" (click)="delete(producto.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
+  </div>
+</div>
