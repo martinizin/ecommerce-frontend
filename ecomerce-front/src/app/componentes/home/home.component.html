@@ -24,7 +24,7 @@
         <mat-menu #userMenu="matMenu">
           <button mat-menu-item (click)="navigateToListar()" *ngIf="isEmprendedor">MIS PRODUCTOS</button>
           <button mat-menu-item (click)="navigateToCreate()"*ngIf="isEmprendedor">SUBIR PRODUCTO</button>
-          <button mat-menu-item (click)="navigateToCreate()"*ngIf="isEmprendedor">MIS VENTAS</button>
+          <button mat-menu-item (click)="navigateToMisVentas()"*ngIf="isEmprendedor">MIS VENTAS</button>
           <button mat-menu-item (click)="navigateToCrearCategoria()"*ngIf="isAdmin">GESTIONAR CATEGORIAS</button>
           <button mat-menu-item (click)="navigateToListProducts()"*ngIf="isAdmin">GESTIONAR PRODUCTOS</button>
           <button mat-menu-item (click)="navigateToListarUsuarios()"*ngIf="isAdmin">GESTIONAR USUARIOS</button> 

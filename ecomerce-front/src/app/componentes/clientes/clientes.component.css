@@ -77,8 +77,13 @@
     color: #fff;
   }
   
+  .button-container {
+    position: fixed;
+    top: 20px; /* Ajusta la distancia desde la parte superior según necesites */
+    right: 20px; /* Ajusta la distancia desde la derecha según necesites */
+  }
+  
   .button-container button {
-    margin: 0 0.5rem;
     background-color: transparent;
     border: 2px solid #3f51b5;
     border-radius: 5px;
@@ -91,5 +96,87 @@
     background-color: #3f51b5;
     color: #fff;
   }
+  .cart-action-container {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+/* Estilo para el botón del carrito */
+.cart-button {
+  position: fixed;
+  top: 20px; /* Ajusta la distancia desde la parte superior según necesites */
+  left: 20px; /*background-color: #2196f3; /* Color de fondo del botón */
+  color: blue;
+  border-radius: 50%; /* Forma circular */
+  padding: 10px;
+  transition: transform 0.3s ease-in-out; /* Animación al pasar el ratón */
+}
+
+.cart-button:hover {
+  transform: scale(1.1); /* Escalar al pasar el ratón */
+}
+
+/* Estilo para el ícono del carrito */
+.cart-icon {
+  font-size: 24px; 
+  position:sticky;/* Tamaño del ícono */
+}
+
+/* Estilo para la etiqueta del número de productos */
+.cart-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+  .quantity-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.quantity-button {
+    background-color: #1d96c7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-button:hover {
+    background-color: #1d96c7;
+}
+
+.quantity-container input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.add-to-cart-button {
+    background-color:#1d96c7;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #00796b;
+}
  
   

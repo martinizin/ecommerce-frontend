@@ -15,6 +15,7 @@ export class ListadoProductosService {
     return this.httpClient.get<any[]>(`${this.baseUrl}/listar`, { headers });
     
   }
+  
 
   comprarProducto(id: number, token: string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

@@ -97,6 +97,9 @@ export class HomeComponent implements OnInit {
   navigateToMisCompras():void{
     this.router.navigate(['/mis-compras'])
   }
+  navigateToMisVentas():void{
+    this.router.navigate(['/mis-ventas'])
+  }
   navigateToListarUsuarios(){
     this.router.navigate(['/listar-usuarios'])
   }

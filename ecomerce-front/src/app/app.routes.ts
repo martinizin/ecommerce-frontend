@@ -15,6 +15,9 @@ import path from 'node:path';
 import { GestionUsuariosComponent } from './componentes/gestion-usuarios/gestion-usuarios.component';
 import { ListadoUsuariosComponent } from './componentes/listado-usuarios/listado-usuarios.component';
 import { ListadoProductosComponent } from './componentes/listado-productos/listado-productos.component';
+import { CarritoComprasComponent } from './componentes/carrito-compras/carrito-compras.component';
+import { MisComprasComponent } from './componentes/mis-compras/mis-compras.component';
+import { MisVentasComponent } from './componentes/mis-ventas/mis-ventas.component';
 
 export const routes: Routes = [
     {path :'',redirectTo:'login',pathMatch:'full'},
@@ -32,8 +35,10 @@ export const routes: Routes = [
     {path:'realizar-compra',component:RealizarCompraComponent},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},
-    {path: 'mis-compras',component:ProductosComponent},
     {path: 'listar-usuarios',component:ListadoUsuariosComponent},
-    {path:'todos-productos',component:ListadoProductosComponent}
+    {path:'todos-productos',component:ListadoProductosComponent},
+    { path: 'carrito', component: CarritoComprasComponent },
+    {path:'mis-compras',component:MisComprasComponent},
+    {path:'mis-ventas',component:MisVentasComponent}
    // { path: 'Home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },
 ];

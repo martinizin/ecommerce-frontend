@@ -1,0 +1,185 @@
+.empty-cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ajusta la altura según necesites para centrar verticalmente */
+  background-color: #f0f0f0; /* Color de fondo para la pantalla */
+}
+
+.card {
+  width: 300px; /* Ancho de la tarjeta */
+  padding: 20px;
+  background-color: #fff; /* Color de fondo de la tarjeta */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  text-align: center;
+  animation: fadeInUp 0.5s ease; /* Animación de entrada */
+}
+
+.button-container-regresar {
+  margin-top: 20px; /* Espacio superior para separar el botón */
+}
+
+.button-container-regresar button {
+  background-color: #3f51b5; /* Color de fondo del botón */
+  color: #fff;
+  display: block; /* Hace que el botón sea un bloque para ocupar toda la anchura disponible */
+  width: 100%; /* Ancho completo del contenedor */
+}
+
+.button-container-regresar button:hover {
+  background-color: #303f9f; /* Color de fondo al pasar el mouse */
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Estilo para el contenedor de resumen del carrito */
+.cart-summary-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el título del emprendedor */
+.emprendedor-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Estilo para las tarjetas de productos */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Estilo para el contenedor de la imagen del producto */
+.product-image-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.product-image {
+  max-width: 100%;
+  height: 150px; /* Tamaño fijo para todas las imágenes */
+  object-fit: cover; /* Mantiene la proporción de la imagen */
+  border-radius: 10px;
+}
+
+/* Estilo para la información del producto */
+.product-info {
+  text-align: center;
+}
+
+.product-name {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #333;
+}
+
+.product-description,
+.product-quantity,
+.product-price,
+.product-total {
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Estilo para el total a pagar por emprendedor */
+.total-amount {
+  text-align: center;
+  font-size: 1.2em;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Asegurar que el valor total esté en negritas */
+.total-amount strong {
+  font-weight: bold;
+  color: #000;
+}
+button[mat-raised-button][color="warn"] {
+  margin-top: 10px;
+}
+
+/* Estilo para el contenedor de botones */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+/* Estilo para el contenedor de botones */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+    margin: 0 0.5rem;
+    background-color: transparent;
+    border: 2px solid #3f51b5;
+    border-radius: 5px;
+    color: #3f51b5;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  .button-container button:hover {
+    background-color: #3f51b5;
+    color: #fff;
+  }
+  .button-container-warn button {
+    margin: 0 0.5rem;
+    background-color: transparent;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  .button-container-warn button:hover {
+    background-color: red;
+    color: #fff;
+  }
+  .button-container-regresar button {
+    margin: 0 0.5rem;
+    background-color: transparent;
+    border: 2px solid green;
+    border-radius: 5px;
+    color: green;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+  .button-container-regresar button:hover {
+    background-color: green;
+    color: #fff;
+  }
+
+  
+ 

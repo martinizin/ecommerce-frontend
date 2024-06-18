@@ -1,0 +1,42 @@
+<div *ngIf="productosAgrupados.length === 0; else carritoContenido">
+  <div class="empty-cart-container">
+    <div class="card">
+      <h2>AÚN NO TIENES PRODUCTOS EN TU CARRITO</h2>
+      <div class="button-container-regresar">
+        <button mat-raised-button color="accent" (click)="regresar()">Regresar</button>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<ng-template #carritoContenido>
+  <div class="cart-summary-container" *ngFor="let grupo of productosAgrupados">
+    <h2 class="emprendedor-title">Proveedor: {{ grupo.emprendedor }}</h2>
+    <div class="product-summary" *ngFor="let producto of grupo.productos">
+      <div class="product-card">
+        <div class="product-image-container">
+          <img [src]="producto.imageUrl" alt="Imagen del producto" class="product-image">
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">{{ producto.nomproducto }}</h3>
+          <p class="product-description">{{ producto.descripcionproducto }}</p>
+          <p class="product-quantity">Unidades seleccionadas: {{ producto.quantity }}</p>
+          <p class="product-price">Precio por unidad: ${{ producto.precioprducto }}</p>
+          <p class="product-total">Valor total: ${{ producto.precioprducto * producto.quantity }}</p>
+          <div  class="button-container-warn">
+            <button mat-raised-button color="warn" (click)="quitarDelCarrito(producto)">Quitar del carrito</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <h3 class="total-amount">Total a pagar al {{ grupo.emprendedor }}: <strong>${{ grupo.total }}</strong></h3>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="comprar(grupo)">COMPRAR</button>
+    </div>
+    <div class="button-container">
+      <button mat-raised-button color="primary" (click)="regresar()">SEGUIR COMPRANDO</button>
+    </div>
+  </div>
+</ng-template>

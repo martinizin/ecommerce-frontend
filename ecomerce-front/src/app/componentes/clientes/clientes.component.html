@@ -1,22 +1,36 @@
-<div class="product-list-container">
+<div class="cart-icon-container">
+    <button mat-icon-button (click)="navigateToCarrito()" class="cart-button">
+      <mat-icon class="cart-icon">shopping_cart</mat-icon>
+      <span class="cart-badge">{{ numProductosCarrito }}</span>
+    </button>
+    <div class="button-container">
+        <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
+      </div>
+  </div>
+  <div class="product-list-container">
     <h1 class="title">Catálogo de Productos</h1>
     <div class="product-catalog">
       <div class="product-card" *ngFor="let producto of productos">
         <div class="product-image-container">
-          <td><img src="{{producto.imageUrl}}" alt="Imagen del producto" class="product-image"></td>
+          <img [src]="producto.imageUrl" alt="Imagen del producto" class="product-image">
         </div>
         <div class="product-info">
-          <h3>{{ producto.nomproducto }}</h3>
-          <p>{{ producto.descripcionproducto }}</p>
+          <h3 class="product-name">{{ producto.nomproducto }}</h3>
+          <p class="product-description">Descripción: {{ producto.descripcionproducto }}</p>
+          <p class="product-stock">Stock disponible: {{ producto.stockproducto }}</p>
           <p class="product-price">Precio: ${{ producto.precioprducto }}</p>
-          <button mat-raised-button color="primary" class="buy-button" (click)="comprarProducto()">Comprar</button>
-          
+          <div class="cart-action-container">
+            <div class="quantity-container">
+              <button class="quantity-button" (click)="decreaseQuantity(producto)">-</button>
+              <input type="number" [(ngModel)]="producto.quantity" min="1" [max]="producto.stockproducto" readonly>
+              <button class="quantity-button" (click)="increaseQuantity(producto)">+</button>
+            </div>
+            <button mat-raised-button color="primary" class="add-to-cart-button" (click)="addToCart(producto)">Añadir al carrito</button>
+          </div>
+
         </div>
-       
       </div>
     </div>
-    <div class="button-container">
-        <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
-      </div>
+   
   </div>
   
