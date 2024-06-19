@@ -37,7 +37,7 @@ export const routes: Routes = [
     {path: 'modificar',component:FormularioProductosComponent},
     {path:'productos',component:ClientesComponent},
     {path:'crear-cuenta-bancaria',component:FormularioCuentaBancariaComponent},
-    {path:'cuenta-bancaria/:id',component:CuentaBancariaComponent},
+    {path:'cuenta-bancaria/:idEmprendedor',component:CuentaBancariaComponent},
     {path:'cuenta-bancaria',component:CuentaBancariaComponent},
     {path:'realizar-compra',component:RealizarCompraComponent},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta

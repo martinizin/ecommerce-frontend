@@ -16,9 +16,13 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
   images = [
-    'assets/logoHome.png',
+    'assets/reelHome7.png',
     'assets/reelHome1.png',
     'assets/reelHome2.png',
+    'assets/reelHome3.png',
+    'assets/reelHome4.png',
+    'assets/reelHome5.png',
+    'assets/reelHome6.png',
     // Añade más rutas de imágenes según sea necesario
   ];
   constructor(

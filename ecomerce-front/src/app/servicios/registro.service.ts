@@ -29,6 +29,7 @@ export class RegistroService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.Username);
         localStorage.setItem('rol',response.Roles[0]);
+        localStorage.setItem('id',response.id)
       }
       return response;
     });

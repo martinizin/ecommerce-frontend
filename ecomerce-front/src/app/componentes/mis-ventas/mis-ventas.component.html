@@ -1,5 +1,5 @@
 <div class="ventas-list-container">
-    <h1 class="title">Listado de Productos</h1>
+    <h1 class="title">COMPROBANTES DE VENTA</h1>
     
     <div class="button-container">
         <button mat-raised-button color="accent" type="button" (click)="regresar()">Regresar</button>
@@ -17,7 +17,13 @@
           </tr>
         </thead>
         <tbody>
-       
+          <tr *ngFor="let venta of ventas; let i = index;">
+            <td>{{venta.buyerUsername}}</td>
+            <td>{{venta.productName}}</td>
+            <td>{{venta.valorventaunitario}}</td>
+            <td><img src="{{venta.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
+            <td>{{venta.state}}</td>
+          </tr>
         </tbody>
       </table>
     </div>

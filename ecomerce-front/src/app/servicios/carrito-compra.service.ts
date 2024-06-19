@@ -27,6 +27,7 @@ export class CarritoCompraService {
     currentCart.push(producto);
     this.carrito.next(currentCart);
   }
+  
   quitarProducto(producto: any): void {
     const currentCart = this.carrito.value;
     const index = currentCart.findIndex(p => p.id === producto.id);

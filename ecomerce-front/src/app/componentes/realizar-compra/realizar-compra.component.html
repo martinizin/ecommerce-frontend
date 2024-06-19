@@ -1,31 +1,14 @@
-<div class="card-container">
-  <div class="card">
-    <div class="card-header">
-      Información del Producto
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ producto.nomproducto }}</h5>
-      <p class="card-text">{{ producto.descripcionproducto }}</p>
-      <p class="card-text">Stock: {{ producto.stockproducto }}</p>
-      <p class="card-text">Precio: {{ producto.precioprducto }}</p>
-      <img [src]="producto.imagen" alt="Imagen del producto" class="card-img-top">
-    </div>
-  </div>
-
-  <div class="card mt-3">
-    <div class="card-header">
-      Información del Emprendedor
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{ emprendedor.username }}</h5>
-      <p class="card-text">Email: {{ emprendedor.email }}</p>
-      <p class="card-text">Número: {{ emprendedor.numero }}</p>
-    </div>
-  </div>
-
-  <div class="mt-3">
-    <button class="btn btn-primary btn-custom" (click)="subirComprobante()">Subir comprobante de compra</button>
-    <button class="btn btn-secondary btn-custom ml-2" (click)="regresar()">Regresar</button>
-    
-  </div>
-</div>
+<!-- <div>
+  <h2>Realizar Compra</h2>
+  <form (ngSubmit)="realizarCompra()">
+    <mat-form-field appearance="fill">
+      <mat-label>Producto ID</mat-label>
+      <input matInput [(ngModel)]="productoId" name="productoId" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Cantidad</mat-label>
+      <input matInput type="number" [(ngModel)]="stock" name="stock" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Comprar</button>
+  </form>
+</div> -->

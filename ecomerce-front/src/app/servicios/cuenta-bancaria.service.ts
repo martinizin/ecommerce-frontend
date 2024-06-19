@@ -35,13 +35,13 @@ export class CuentaBancariaService {
     return this.http.get(`${this.baseUrl}/listar`, { headers });
   }
   
-  listarCuentasBancariasPorId(): Observable<any> {
+  listarCuentasBancariasPorId(id:number): Observable<any> {
     const token = this.obtenerToken();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.baseUrl}/listar`, { headers });
+    return this.http.get(`${this.baseUrl}/${id}`, { headers });
   }
 
   subirComprobante(idProducto: number, archivo: File): Observable<any> {

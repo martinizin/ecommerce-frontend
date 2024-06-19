@@ -12,6 +12,11 @@
     margin-bottom: 1rem;
     animation: fadeInDown 0.5s ease-in-out;
   }
+  .product-image {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+  }
 
 .button-container {
     display: flex;

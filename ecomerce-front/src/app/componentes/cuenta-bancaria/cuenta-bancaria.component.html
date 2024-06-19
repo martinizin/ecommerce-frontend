@@ -1,7 +1,7 @@
 <div class="form-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Mis Cuentas Bancarias</mat-card-title>
+      <mat-card-title>DATOS BANCARIOS DEL EMPRENDEDOR</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div *ngFor="let cuenta of cuentasBancarias" class="cuenta-card">
@@ -15,12 +15,22 @@
             <p><strong>Nombre:</strong> {{ cuenta.nombre }} {{ cuenta.apellido }}</p>
           </mat-card-content>
         </mat-card>
+        <mat-card-actions class="button-crear-container">
+            <input type="file" (change)="onFileSelected($event)">
+            <button mat-raised-button color="blue" (click)="subirComprobante(cuenta)">Subir Comprobante</button>
+            <div class="button-carrito-container">
+              <button mat-raised-button color="accent" type="button" (click)="regresarAProductos()">VOLVER AL CARRITO</button>
+            </div>
+        </mat-card-actions>
       </div>
     </mat-card-content>
 
   </mat-card>
   <div class="button-crear-container">
-    <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()">AÑADIR CUENTA BANCARIA</button>
+    <button mat-raised-button color="accent" type="button" (click)="realizarCompra()">FINALIZAR COMPRA</button>
+  </div>
+  <div class="button-crear-container">
+    <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()"*ngIf="isEmprendedor">AÑADIR CUENTA BANCARIA</button>
   </div>
   <div class="button-container">
     <button mat-raised-button color="accent" type="button" (click)="regresar()">REGRESAR</button>
