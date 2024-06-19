@@ -42,4 +42,7 @@ export class LoginComponent {
   goToResetContrasena() {
     this.router.navigate(['/send-reset']);
   }
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 }

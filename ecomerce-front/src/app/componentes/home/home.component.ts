@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
   
   logout(): void {
     this.registroService.logoutUser();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/dashboard']);
   }
   toggleUploadProduct(): void {
     this.showUploadButton = !this.showUploadButton;

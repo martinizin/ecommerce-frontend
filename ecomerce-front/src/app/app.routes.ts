@@ -18,9 +18,11 @@ import { ListadoProductosComponent } from './componentes/listado-productos/lista
 import { CarritoComprasComponent } from './componentes/carrito-compras/carrito-compras.component';
 import { MisComprasComponent } from './componentes/mis-compras/mis-compras.component';
 import { MisVentasComponent } from './componentes/mis-ventas/mis-ventas.component';
+import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path :'',redirectTo:'login',pathMatch:'full'},
+    { path: 'dashboard', component: DashboardComponent },
+    {path :'',redirectTo:'dashboard',pathMatch:'full'},
     {path: 'register',component:RegistroComponent},
     {path: 'login',component:LoginComponent},
     { path: 'home', component: HomeComponent}, //, canActivate: [AuthGuard] },

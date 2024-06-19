@@ -90,5 +90,8 @@ export class RegistroComponent {
       this.otpForm.markAllAsTouched();
     }
   }
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
   
 }
