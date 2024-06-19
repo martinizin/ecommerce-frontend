@@ -5,6 +5,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './auth.interceptor';
+import { CuentaBancariaService } from './servicios/cuenta-bancaria.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,7 +14,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor])
-    )
+      withInterceptors([authInterceptor]),
+     
+    ),
+    CuentaBancariaService
   ]
 };

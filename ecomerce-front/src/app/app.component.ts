@@ -15,8 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { UploadImageDialogComponent } from './componentes/upload-image-dialog/upload-image-dialog.component';
+import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
+
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -32,7 +36,7 @@ import { GestionUsuariosComponent } from './componentes/gestion-usuarios/gestion
     LoginComponent,MatSidenavContent,
     MatSidenav,MatSidenavContainer,
     HttpClientModule,FormsModule,MatFormFieldModule,MatInputModule,MatButtonModule,
-  MatCardModule,MatSnackBarModule,ReactiveFormsModule,MatButton,MatIcon],
+  MatCardModule,MatSnackBarModule,ReactiveFormsModule,MatButton,MatIcon,CuentaBancariaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

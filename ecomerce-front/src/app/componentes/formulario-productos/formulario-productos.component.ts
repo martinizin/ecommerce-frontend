@@ -8,6 +8,7 @@ import { NgClass, NgFor,NgIf } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CrudProductosService } from '../../servicios/crud-productos.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     ReactiveFormsModule,
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,

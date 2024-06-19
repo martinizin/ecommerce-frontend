@@ -17,6 +17,7 @@ import { MatLabel } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { CrudProductosService } from '../../servicios/crud-productos.service';
 import { ListadoUsuariosService } from '../../servicios/listado-usuarios.service';
+import { CuentaBancariaService } from '../../servicios/cuenta-bancaria.service';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
   registroService = inject(RegistroService);
   crudService=inject(CrudProductosService)
   listadoUsuarios=inject(ListadoUsuariosService)
+  listadoCuentas=inject(CuentaBancariaService)
   router = inject(Router);
   username: string | null = null;
   selectedOption: any;
@@ -105,6 +107,10 @@ export class HomeComponent implements OnInit {
   }
   navigateToListProducts(){
     this.router.navigate(['/todos-productos']);
+  }
+  navigateToMisCuentas(){
+    this.listadoCuentas.listarCuentasBancarias();
+    this.router.navigate(['/cuenta-bancaria']);
   }
 
 }

@@ -1,0 +1,28 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Mis Cuentas Bancarias</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngFor="let cuenta of cuentasBancarias" class="cuenta-card">
+        <mat-card class="cuenta-details-card">
+          <mat-card-header>
+            <mat-card-title>{{ cuenta.banco }}</mat-card-title>
+            <mat-card-subtitle>{{ cuenta.tipCuenta }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>Número de Cuenta:</strong> {{ cuenta.numCuenta }}</p>
+            <p><strong>Nombre:</strong> {{ cuenta.nombre }} {{ cuenta.apellido }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+  <div class="button-crear-container">
+    <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()">AÑADIR CUENTA BANCARIA</button>
+  </div>
+  <div class="button-container">
+    <button mat-raised-button color="accent" type="button" (click)="regresar()">REGRESAR</button>
+  </div>
+</div>

@@ -19,6 +19,8 @@ import { CarritoComprasComponent } from './componentes/carrito-compras/carrito-c
 import { MisComprasComponent } from './componentes/mis-compras/mis-compras.component';
 import { MisVentasComponent } from './componentes/mis-ventas/mis-ventas.component';
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
+import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
+import { FormularioCuentaBancariaComponent } from './componentes/formulario-cuenta-bancaria/formulario-cuenta-bancaria.component';
 
 export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -34,6 +36,9 @@ export const routes: Routes = [
     {path: 'modificar/:id',component:FormularioProductosComponent},
     {path: 'modificar',component:FormularioProductosComponent},
     {path:'productos',component:ClientesComponent},
+    {path:'crear-cuenta-bancaria',component:FormularioCuentaBancariaComponent},
+    {path:'cuenta-bancaria/:id',component:CuentaBancariaComponent},
+    {path:'cuenta-bancaria',component:CuentaBancariaComponent},
     {path:'realizar-compra',component:RealizarCompraComponent},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},

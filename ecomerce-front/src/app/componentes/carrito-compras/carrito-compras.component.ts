@@ -14,7 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CarritoComprasComponent implements OnInit{
   productosAgrupados: any[] = [];
-
+  mostrarCuentaBancaria = false;
+  grupoSeleccionado: any = null;
   constructor(
     private carritoCompraService: CarritoCompraService,
     private router: Router
@@ -43,11 +44,11 @@ export class CarritoComprasComponent implements OnInit{
   }
 
   comprar(grupo: any): void {
-    // Lógica para realizar la compra de los productos de un emprendedor
     console.log(`Comprando productos del emprendedor: ${grupo.emprendedor}`);
     console.log(`Productos:`, grupo.productos);
     console.log(`Total a pagar: $${grupo.total}`);
-    // Aquí puedes añadir la lógica para realizar la compra
+    this.grupoSeleccionado = grupo;
+    this.mostrarCuentaBancaria = true;
   }
   quitarDelCarrito(producto: any): void {
     this.carritoCompraService.quitarProducto(producto);
@@ -55,9 +56,16 @@ export class CarritoComprasComponent implements OnInit{
   regresar(): void {
     this.router.navigate(['/productos']);
   }
-  
+  manejarComprobanteSubido(event: any): void {
+    // Manejar la lógica una vez que el comprobante ha sido subido
+    console.log('Comprobante subido:', event);
+    this.mostrarCuentaBancaria = false;
+    this.grupoSeleccionado = null;
+  }
+
 
   }
+
   
 
 
