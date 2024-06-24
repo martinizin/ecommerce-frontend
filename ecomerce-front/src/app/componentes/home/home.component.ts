@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/todos-productos']);
   }
   navigateToMisCuentas(){
-    this.listadoCuentas.listarCuentasBancarias();
+    //this.listadoCuentas.listarCuentasBancarias();
     this.router.navigate(['/cuenta-bancaria']);
   }
 

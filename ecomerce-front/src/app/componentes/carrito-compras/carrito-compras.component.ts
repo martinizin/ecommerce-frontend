@@ -1,4 +1,4 @@
-import { Component , OnInit} from '@angular/core';
+import { Component , OnInit, Output} from '@angular/core';
 import { CarritoCompraService } from '../../servicios/carrito-compra.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgIf,NgFor } from '@angular/common';
@@ -6,10 +6,12 @@ import { CrudProductosService } from '../../servicios/crud-productos.service';
 import { ListadoProductosService } from '../../servicios/listado-productos.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CuentaBancariaService } from '../../servicios/cuenta-bancaria.service';
+import { query } from 'express';
+import { CuentaBancariaComponent } from '../cuenta-bancaria/cuenta-bancaria.component';
 @Component({
   selector: 'app-carrito-compras',
   standalone: true,
-  imports: [NgIf,NgFor],
+  imports: [NgIf,NgFor, CuentaBancariaComponent],
   templateUrl: './carrito-compras.component.html',
   styleUrl: './carrito-compras.component.css'
 })
@@ -17,6 +19,10 @@ export class CarritoComprasComponent implements OnInit{
   productosAgrupados: any[] = [];
   mostrarCuentaBancaria = false;
   grupoSeleccionado: any = null;
+  isCuentaBanc:boolean =false;
+  @Output() total: number=0;
+  @Output() bankAccountUser: number=0; @Output() cartProducts: any[] = [];
+;
   constructor(
     private carritoCompraService: CarritoCompraService,
     private cuentaBancaria: CuentaBancariaService,
@@ -28,7 +34,12 @@ export class CarritoComprasComponent implements OnInit{
       this.productosAgrupados = this.agruparProductosPorEmprendedor(productos);
     });
   }
-
+  returnToCart(e:any){
+    this.isCuentaBanc = e;
+  }
+  dataReturned(e:any){
+    //Emitter e tiene el array:D
+  }
   agruparProductosPorEmprendedor(productos: any[]): any[] {
     const agrupados: any = {};
     productos.forEach(producto => {
@@ -49,12 +60,14 @@ export class CarritoComprasComponent implements OnInit{
     console.log(`Comprando productos del emprendedor: ${grupo.emprendedor}`);
     console.log(`Productos:`, grupo.productos);
     console.log(`Total a pagar: $${grupo.total}`);
+
     this.cuentaBancaria.listarCuentasBancarias();
     console.log(`Cuentas Bancarias:`,grupo.listarCuentasBancarias);
     this.grupoSeleccionado = grupo;
     this.mostrarCuentaBancaria = true;
-    
-    this.router.navigate(['/cuenta-bancaria',grupo.productos[0].user.id ]);
+    this.isCuentaBanc=true; this.total=grupo.total;this.bankAccountUser =grupo.productos[0].user.id;
+    this.cartProducts = grupo.productos;
+    //this.router.navigate(['/cuenta-bancaria',grupo.productos[0].user.id ], {queryParams:{total:grupo.total}});//
     //console.log(grupo.productos[0].user.id)
   }
 

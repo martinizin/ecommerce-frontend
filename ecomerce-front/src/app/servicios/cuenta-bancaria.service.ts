@@ -44,10 +44,10 @@ export class CuentaBancariaService {
     return this.http.get(`${this.baseUrl}/${id}`, { headers });
   }
 
-  subirComprobante(idProducto: number, archivo: File): Observable<any> {
+  subirComprobante(idProducto: number, archivo: File,vTotal:number): Observable<any> {
     const formData = new FormData();
     formData.append('file', archivo);
-    return this.http.post<any>(`${this.productoBaseUrl}/${idProducto}/uploadPaymentProof`, formData, {
+    return this.http.post<any>(`${this.productoBaseUrl}/${idProducto}/uploadPaymentProof/${vTotal}`, formData, {
       headers: this.getHeaders(),
     });
   }

@@ -13,6 +13,14 @@ export class CarritoCompraService {
 
   constructor(private httpClient: HttpClient) {}
 
+  purchase(prodcts:{ productos: { id: number; cantidad: number; }[]; }){
+    const token = this.obtenerToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.httpClient.put('http://localhost:8095/api/v1/compras/compra', prodcts, { headers });
+    
+  }
   obtenerToken(): string {
     return localStorage.getItem('token') || '';
   }

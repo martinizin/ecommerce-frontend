@@ -18,5 +18,5 @@ export const appConfig: ApplicationConfig = {
      
     ),
     CuentaBancariaService
-  ]
+  ],
 };

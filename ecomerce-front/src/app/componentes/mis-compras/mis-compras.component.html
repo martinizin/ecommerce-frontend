@@ -20,7 +20,7 @@
           <tr *ngFor="let venta of ventas; let i = index;">
             <td>{{venta.sellerUsername}}</td>
             <td>{{venta.productName}}</td>
-            <td>{{venta.valorventaunitario}}</td>
+            <td>{{venta.valorTotal}}</td>
             <td><img src="{{venta.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
             <td>{{venta.state}}</td>
         </tbody>

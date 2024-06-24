@@ -1,14 +1,20 @@
-<div *ngIf="productosAgrupados.length === 0; else carritoContenido">
-  <div class="empty-cart-container">
-    <div class="card">
-      <h2>AÚN NO TIENES PRODUCTOS EN TU CARRITO</h2>
-      <div class="button-container-regresar">
-        <button mat-raised-button color="accent" (click)="regresar()">Regresar</button>
+<div *ngIf="isCuentaBanc; else carritoComp">
+  <app-cuenta-bancaria [total]="total" [idEmprendedor]="bankAccountUser" 
+  (returnEvent)="returnToCart($event)" (productsPurchased)="dataReturned($event)" [cartProducts]="cartProducts"></app-cuenta-bancaria>
+</div>
+
+<ng-template #carritoComp>
+  <div *ngIf="productosAgrupados.length === 0; else carritoContenido">
+    <div class="empty-cart-container">
+      <div class="card">
+        <h2>AÚN NO TIENES PRODUCTOS EN TU CARRITO</h2>
+        <div class="button-container-regresar">
+          <button mat-raised-button color="accent" (click)="regresar()">Regresar</button>
+        </div>
       </div>
     </div>
   </div>
-  
-</div>
+</ng-template>
 
 <ng-template #carritoContenido>
   <div class="cart-summary-container" *ngFor="let grupo of productosAgrupados">

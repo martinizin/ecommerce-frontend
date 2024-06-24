@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CuentaBancariaService } from '../../servicios/cuenta-bancaria.service';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -22,9 +22,13 @@ export class CuentaBancariaComponent implements OnInit{
   cuentasBancarias: any[] = [];
   username: string | null = '';
   selectedFile: File | null = null;
-  idEmprendedor:number=0;
+  @Input() idEmprendedor:number=0;
   producto: any;
-  constructor(
+  @Input() total:number=0;
+  @Output() returnEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() productsPurchased:EventEmitter<{productos: { id: number; cantidad: number; }[]}> = new EventEmitter<{productos: { id: number; cantidad: number; }[]}>();
+  @Input() cartProducts:any[] =[];
+    constructor(
     private cuentaBancariaService: CuentaBancariaService,
     private carritoService:CarritoCompraService,
     private router: Router,
@@ -33,21 +37,30 @@ export class CuentaBancariaComponent implements OnInit{
 
  
   ngOnInit(): void {
-
-   this.route.params.subscribe(params => {
-    if (params['idEmprendedor']) {
-      this.idEmprendedor = + params['idEmprendedor'];
-     
+    if(this.idEmprendedor)
       this.cargarCuentasBancarias(this.idEmprendedor);
-    }
-    else{
-      this.cargarCuentasBancariasporIdEmprendedor(localStorage.getItem('id')||'');
-      
-    }
-    this.carritoService.carrito$.subscribe(productos => {
-      this.productosAgrupados = this.agruparProductosPorEmprendedor(productos);
-    });
-  });
+    else
+      this.cargarCuentasBancariasporEmprendedor(localStorage.getItem('username')||'');
+    console.log(this.cartProducts);
+  //  this.route.params.subscribe(params => {
+  //   if (params['idEmprendedor']) {
+  //     this.idEmprendedor = + params['idEmprendedor'];
+  //     this.cargarCuentasBancarias(this.idEmprendedor);
+  //   }
+  //   else{
+  //     this.cargarCuentasBancariasporIdEmprendedor(localStorage.getItem('username')||'');
+  //   }
+    
+  //   this.carritoService.carrito$.subscribe(productos => {
+  //     this.productosAgrupados = this.agruparProductosPorEmprendedor(productos);
+  //   });
+
+  //   this.route.queryParams.subscribe(params=>{
+  //     if(params['total']){
+  //       this.total = +params['total'];
+  //     }
+  //   })
+  // });
 
   }
   agruparProductosPorEmprendedor(productos: any[]): any[] {
@@ -76,10 +89,10 @@ export class CuentaBancariaComponent implements OnInit{
       }
     );
 }
-cargarCuentasBancariasporIdEmprendedor(username:string):void{
+cargarCuentasBancariasporEmprendedor(username:string):void{
   this.cuentaBancariaService.listarCuentasBancarias().subscribe(
     response=>{
-      this.cuentaBancariaService=response.filter((x:any)=>x.iduser.icludes.id);
+      this.cuentasBancarias=response.filter((x:any)=>x.iduser.username.includes(username));
     }
   )
   
@@ -96,7 +109,7 @@ onFileSelected(event: any): void {
 subirComprobante(cuenta: any): void {
   if (this.selectedFile) {
     const productoId = cuenta.idCuenta; // Suponiendo que idCuenta se usa como identificador
-    this.cuentaBancariaService.subirComprobante(productoId, this.selectedFile).subscribe(response => {
+    this.cuentaBancariaService.subirComprobante(productoId, this.selectedFile,this.total).subscribe(response => { //Voy a enviar el cartProducts (el json bonito)
       console.log('Comprobante subido:', response);
       // Aquí puedes añadir lógica adicional después de subir el comprobante
     });
@@ -109,10 +122,21 @@ regresar(): void {
   this.router.navigate(['/home']);
 }
 regresarAProductos(): void {
-  this.router.navigate(['/carrito']);
+  this.returnEvent.emit(false);
+  //this.router.navigate(['/carrito']);
 }
 realizarCompra(): void {
-  this.router.navigate(['/compra-realizada']);
+  let request:{productos:{id:number, cantidad:number}[]}={productos:[]};
+  this.cartProducts.forEach((val:any)=>{
+    request.productos.push({id:val.id, cantidad:val.quantity})
+  })
+  console.log(request)
+  this.carritoService.purchase(request).subscribe(response =>{
+    console.log(response);//Debes de quitar del arrego de productosel produto que se compro
+    this.productsPurchased.emit(request);//Se envia arreglo de proudctos comprados
+    this.regresarAProductos();
+  })
+  //this.router.navigate(['/compra-realizada']);
 }
 
 
