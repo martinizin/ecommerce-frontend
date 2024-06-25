@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CuentaBancariaService {
   private baseUrl = 'http://localhost:8095/api/v1/cuenta';
-  private productoBaseUrl = 'http://localhost:8095/api/v1/producto';
+  private productoBaseUrl = 'http://localhost:8095/api/v1/producto/uploadPaymentProof';
 
   constructor(private http: HttpClient) { }
 
@@ -44,11 +44,21 @@ export class CuentaBancariaService {
     return this.http.get(`${this.baseUrl}/${id}`, { headers });
   }
 
-  subirComprobante(idProducto: number, archivo: File,vTotal:number): Observable<any> {
+  subirComprobante(productos: number[], valorTotal: number, archivo: File): Observable<any> {
     const formData = new FormData();
     formData.append('file', archivo);
-    return this.http.post<any>(`${this.productoBaseUrl}/${idProducto}/uploadPaymentProof/${vTotal}`, formData, {
-      headers: this.getHeaders(),
+  
+    // Crear el objeto de datos y convertirlo a string JSON
+    const datos = JSON.stringify({
+      productos: productos,
+      valorTotal: valorTotal
+    });
+    formData.append('compraRequest', new Blob([datos], { type: 'application/json' }));
+  
+    return this.http.post<any>(this.productoBaseUrl, formData, {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.obtenerToken()}`
+      })
     });
   }
 }

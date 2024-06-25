@@ -4,10 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgFor } from '@angular/common';
-import { RegistroService } from '../../servicios/registro.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router,ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { CarritoCompraService } from '../../servicios/carrito-compra.service';
+import { VentanasEmergentesComponent } from '../ventanas-emergentes/ventanas-emergentes.component';
+import { privateDecrypt } from 'crypto';
+
 @Component({
   selector: 'app-cuenta-bancaria',
   standalone:true,
@@ -32,7 +35,8 @@ export class CuentaBancariaComponent implements OnInit{
     private cuentaBancariaService: CuentaBancariaService,
     private carritoService:CarritoCompraService,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private dialog:MatDialog
   ) {}
 
  
@@ -108,8 +112,14 @@ onFileSelected(event: any): void {
 
 subirComprobante(cuenta: any): void {
   if (this.selectedFile) {
-    const productoId = cuenta.idCuenta; // Suponiendo que idCuenta se usa como identificador
-    this.cuentaBancariaService.subirComprobante(productoId, this.selectedFile,this.total).subscribe(response => { //Voy a enviar el cartProducts (el json bonito)
+    //const roductoId = cuenta.idCuenta; // Suponiendo que idCuenta se usa como identificador
+    let prd:number[] = [];
+    this.cartProducts
+    .forEach(x =>{
+      prd.push(x.id);
+    });
+    console.log(prd)
+    this.cuentaBancariaService.subirComprobante(prd, this.total,this.selectedFile).subscribe(response => { //Voy a enviar el cartProducts (el json bonito)
       console.log('Comprobante subido:', response);
       // Aquí puedes añadir lógica adicional después de subir el comprobante
     });
@@ -130,12 +140,18 @@ realizarCompra(): void {
   this.cartProducts.forEach((val:any)=>{
     request.productos.push({id:val.id, cantidad:val.quantity})
   })
-  console.log(request)
+  // console.log(request)
   this.carritoService.purchase(request).subscribe(response =>{
     console.log(response);//Debes de quitar del arrego de productosel produto que se compro
-    this.productsPurchased.emit(request);//Se envia arreglo de proudctos comprados
+    //this.productsPurchased.emit(request);//Se envia arreglo de proudctos comprados
     this.regresarAProductos();
-  })
+    // this.dialog.open(VentanasEmergentesComponent).afterClosed().subscribe(() => {
+    //   this.router.navigate(['/mis-compras']);
+    // });
+  },
+error=>{
+    this.router.navigate(['/mis-compras']);
+})
   //this.router.navigate(['/compra-realizada']);
 }
 

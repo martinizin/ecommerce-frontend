@@ -9,6 +9,7 @@
       <table class="ventas-table">
         <thead>
           <tr>
+            <th>ID DE RECIBO</th>
             <th>CLIENTE</th>
             <th>PRODUCTOS COMPRADOS</th>
             <th>VALOR TOTAL A PAGAR</th>
@@ -18,11 +19,17 @@
         </thead>
         <tbody>
           <tr *ngFor="let venta of ventas; let i = index;">
+            <td>{{venta.id}}</td>
             <td>{{venta.buyerUsername}}</td>
             <td>{{venta.productName}}</td>
             <td>{{venta.valorventaunitario}}</td>
             <td><img src="{{venta.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
-            <td>{{venta.state}}</td>
+            <td>
+              <select [(ngModel)]="venta.state" (ngModelChange)="cambiarEstado(venta, $event)">
+                <option value="PENDIENTE">PENDIENTE</option>
+                <option value="VERIFICADO">VERIFICADO</option>
+              </select>
+            </td>
           </tr>
         </tbody>
       </table>

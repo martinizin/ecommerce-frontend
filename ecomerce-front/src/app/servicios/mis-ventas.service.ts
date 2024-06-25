@@ -33,4 +33,13 @@ export class MisVentasService {
     });
     return this.http.get(`${this.baseUrl}/listar`, { headers });
   }
+  // En MisVentasService
+verificarVenta(id: number): Observable<any> {
+  const token = this.obtenerToken();
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+  return this.http.post(`${this.baseUrl}/verify/${id}`, {}, { headers });
+}
+
 }

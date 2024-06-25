@@ -21,6 +21,7 @@ import { MisVentasComponent } from './componentes/mis-ventas/mis-ventas.componen
 import { DashboardComponent } from './componentes/dashboard/dashboard.component';
 import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
 import { FormularioCuentaBancariaComponent } from './componentes/formulario-cuenta-bancaria/formulario-cuenta-bancaria.component';
+import { VentanasEmergentesComponent } from './componentes/ventanas-emergentes/ventanas-emergentes.component';
 
 export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -45,6 +46,7 @@ export const routes: Routes = [
     {path: 'listar-usuarios',component:ListadoUsuariosComponent},
     {path:'todos-productos',component:ListadoProductosComponent},
     { path: 'carrito', component: CarritoComprasComponent },
+    {path:'fin-compra',component:VentanasEmergentesComponent},
     {path:'mis-compras',component:MisComprasComponent},
     {path:'mis-ventas',component:MisVentasComponent}
    // { path: 'Home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },

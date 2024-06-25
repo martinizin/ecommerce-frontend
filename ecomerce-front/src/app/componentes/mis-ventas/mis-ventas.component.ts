@@ -5,10 +5,11 @@ import { NgClass } from '@angular/common';
 import { NgFor } from '@angular/common';
 import { NgIf } from '@angular/common';
 import { MisVentasService } from '../../servicios/mis-ventas.service';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-mis-ventas',
   standalone: true,
-  imports: [MatIcon,NgClass,NgFor,NgIf],
+  imports: [MatIcon,NgClass,NgFor,NgIf,FormsModule],
   templateUrl: './mis-ventas.component.html',
   styleUrl: './mis-ventas.component.css'
 })
@@ -32,6 +33,24 @@ export class MisVentasComponent {
           console.log(this.ventas);
         });
     }
+    // En MisVentasComponent
+cambiarEstado(venta: any, nuevoEstado: string): void {
+  if (nuevoEstado === 'VERIFICADO') {
+    this.misVentasService.verificarVenta(venta.id)
+      .subscribe({
+        next: (response) => {
+          console.log('Venta verificada:', response);
+          venta.state = nuevoEstado; // Asegúrate de actualizar el estado en la vista
+        },
+        error: (error) => {
+          console.error('Error al verificar la venta:', error);
+        }
+      });
+  } else {
+    console.error('Estado no soportado:', nuevoEstado);
+  }
+}
+
     trackById(index: number, producto: any): number {
       return producto.id;
     }

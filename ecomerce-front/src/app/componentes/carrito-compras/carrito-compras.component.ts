@@ -35,11 +35,14 @@ export class CarritoComprasComponent implements OnInit{
     });
   }
   returnToCart(e:any){
+    debugger
     this.isCuentaBanc = e;
   }
+
   dataReturned(e:any){
     //Emitter e tiene el array:D
   }
+  
   agruparProductosPorEmprendedor(productos: any[]): any[] {
     const agrupados: any = {};
     productos.forEach(producto => {

@@ -1,0 +1,13 @@
+/* ventanas-emergentes.component.css */
+.thank-you-dialog {
+    text-align: center;
+  }
+  
+  .thank-you-dialog h1 {
+    margin-bottom: 20px;
+  }
+  
+  .thank-you-dialog p {
+    margin-bottom: 30px;
+  }
+  
