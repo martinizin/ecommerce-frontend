@@ -22,6 +22,7 @@ import { DashboardComponent } from './componentes/dashboard/dashboard.component'
 import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-bancaria.component';
 import { FormularioCuentaBancariaComponent } from './componentes/formulario-cuenta-bancaria/formulario-cuenta-bancaria.component';
 import { VentanasEmergentesComponent } from './componentes/ventanas-emergentes/ventanas-emergentes.component';
+import { SendResetComponent } from './componentes/send-reset/send-reset.component';
 
 export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -29,8 +30,9 @@ export const routes: Routes = [
     {path: 'register',component:RegistroComponent},
     {path: 'login',component:LoginComponent},
     { path: 'home', component: HomeComponent}, //, canActivate: [AuthGuard] },
-    {path:'send-reset',component:ResetContrasenaComponent},
-    { path: 'reset-contrasena', component: CambiarContrasenaComponent },
+    { path: 'send-reset', component: SendResetComponent },
+    { path: 'reset-password', component:ResetContrasenaComponent },
+    { path: '', redirectTo: '/send-reset', pathMatch: 'full' },
     {path: 'listar',component:ProductosComponent},
     {path: 'listar-id',component:ProductosComponent},
     {path: 'crear',component:FormularioProductosComponent},

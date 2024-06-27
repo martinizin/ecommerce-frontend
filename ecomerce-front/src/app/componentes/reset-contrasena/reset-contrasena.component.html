@@ -1,18 +1,35 @@
-<div class="reset-password-container">
-  <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
-    <h2>Cambio de contraseña</h2>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" formControlName="email" class="form-control" placeholder="Enter your email">
-      <div *ngIf="submitted && resetForm.controls['email'].errors" class="invalid-feedback">
-        <div *ngIf="resetForm.controls['email'].errors['required']">El campo es obligatorio</div>
-        <div *ngIf="resetForm.controls['email'].errors['email']">Proporcione una dirección email válida</div>
-      </div>
+<form (ngSubmit)="resetPassword()" class="reset-form" #resetForm="ngForm">
+  <div class="form-group">
+    <input
+      type="password"
+      [(ngModel)]="newPassword"
+      name="newPassword"
+      placeholder="New Password"
+      required
+      minlength="8"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+      #newPasswordInput="ngModel"
+    />
+    <div *ngIf="newPasswordInput.invalid && (newPasswordInput.dirty || newPasswordInput.touched)" class="error">
+      <div *ngIf="newPasswordInput.errors?.['required']">El campo es obligatorio.</div>
+      <div *ngIf="newPasswordInput.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+      <div *ngIf="newPasswordInput.errors?.['pattern']">Debe contener al menos un número, una letra mayúscula y minúscula.</div>
     </div>
-    <button mat-button color="accent" (click)="goToReset()">Enviar</button>
-  </form>
-  <div *ngIf="success" class="alert alert-success">
-   Se ha enviado un correo con las instrucciones para recuperar su contraseña
   </div>
-  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-</div>
+  <div class="form-group">
+    <input
+      type="password"
+      [(ngModel)]="confirmPassword"
+      name="confirmPassword"
+      placeholder="Confirm Password"
+      required
+      #confirmPasswordInput="ngModel"
+      [ngClass]="{'is-invalid': confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)}"
+    />
+    <div *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)" class="error">
+      <div *ngIf="confirmPasswordInput.errors?.['required']">Confirma la contraseña!</div>
+      <div *ngIf="confirmPassword !== newPassword">Las contraseñas deben coincidir.</div>
+    </div>
+  </div>
+  <button type="submit" class="reset-button" [disabled]="resetForm.invalid || confirmPassword !== newPassword">Reset Password</button>
+</form>

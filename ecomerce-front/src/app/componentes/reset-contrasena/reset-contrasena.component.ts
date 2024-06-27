@@ -1,56 +1,43 @@
-import { Component, OnInit,inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistroService } from '../../servicios/registro.service';
-import { catchError, throwError } from 'rxjs';
+import { Component, inject} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
+import { ResetContrasenaService } from '../../servicios/reset-contrasena.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-reset-password',
   standalone:true,
-  imports:[ReactiveFormsModule,NgIf],
+  imports:[ReactiveFormsModule,NgIf,FormsModule,CommonModule],
   templateUrl: './reset-contrasena.component.html',
   styleUrls: ['./reset-contrasena.component.css']
 })
-export class ResetContrasenaComponent implements OnInit {
-  resetForm: FormGroup;
-  submitted = false;
-  success = false;
-  error = '';
+export class ResetContrasenaComponent  {
+  email: string = '';
+  password: string = '';
+  newPassword: string = '';
+  confirmPassword: string = '';
   router = inject(Router);
 
-  constructor(private formBuilder: FormBuilder, private registroService: RegistroService) {
-    this.resetForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
-    });
+
+  constructor(
+    private route: ActivatedRoute,
+    private resetContrasena: ResetContrasenaService
+  ) {
+    this.email = this.route.snapshot.queryParamMap.get('email') || '';
+    this.password = this.route.snapshot.queryParamMap.get('password') || '';
   }
 
-  ngOnInit(): void {}
-
-  get f() { return this.resetForm.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-  
-    if (this.resetForm.invalid) {
-      return;
-    }
-  
-    this.registroService.requestPasswordReset(this.f['email'].value)
-      .pipe(
-        catchError(error => {
-          this.success = false;
-          this.error = error.message || 'An error occurred while processing your request.';
-          return throwError(error);
-        })
-      )
-      .subscribe(() => {
-        this.success = true;
-        this.error = '';
+  resetPassword() {
+    if (this.newPassword === this.confirmPassword) {
+      this.resetContrasena.resetPassword(this.email, this.newPassword).subscribe(response => {
+        alert('Error Actualizando la contraseña, verifica abrir el enlace correctamente');
+      }, error => {
+        alert('Contraseña Actualizada Correctamente!');
+        this.router.navigate(['/login']);
       });
+    } else {
+      alert('Las contraseñas no coinciden!');
+    }
   }
-  goToReset(){
-    this.router.navigate(['/reset-contrasena']);
-  }
-
-  }
+}

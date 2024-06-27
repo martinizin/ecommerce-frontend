@@ -1,0 +1,113 @@
+.reset-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+    max-width: 400px;
+    margin: 50px auto;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .reset-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .reset-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  .reset-form input[type="email"]:focus {
+    border-color: #4CAF50;
+  }
+  
+  .reset-form input.is-invalid {
+    border-color: #e3342f;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px; /* Adds space between buttons */
+  }
+  
+  .reset-button, .cancel-button {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .reset-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .reset-button:hover {
+    background-color: #45a049;
+  }
+  
+  .reset-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .reset-button:active {
+    transform: scale(0.98);
+  }
+  
+  .cancel-button {
+    background-color: #e3342f;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #c82333;
+  }
+  
+  .cancel-button:active {
+    transform: scale(0.98);
+  }
+  
+  .error {
+    color: #e3342f;
+    font-size: 0.875em;
+    margin-top: -10px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

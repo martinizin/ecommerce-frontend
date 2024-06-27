@@ -6,12 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ResetContrasenaService {
-  private apiUrl = 'http://localhost:8095/send-reset';
+  private apiUrl = 'http://localhost:8095';
 
   constructor(private http: HttpClient) { }
 
+  sendResetLink(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/send-reset`, { email, password });
+  }
+
   resetPassword(email: string, newPassword: string): Observable<any> {
-    const body = { email: email, newPassword: newPassword };
-    return this.http.post(this.apiUrl, body);
+    return this.http.post(`${this.apiUrl}/reset-password?email=${encodeURIComponent(email)}`, { password: newPassword });
   }
 }

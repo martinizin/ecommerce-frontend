@@ -1,90 +1,74 @@
-.reset-password-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f4f7;
-  animation: fadeIn 1s ease-in-out;
-}
-
-form {
-  background: #ffffff;
+.reset-form {
+  background-color: #f9f9f9;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  animation: slideIn 0.5s ease-out;
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
 }
 
 .form-group {
   margin-bottom: 15px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #555;
-}
-
-input {
+.reset-form input[type="password"] {
   width: 100%;
   padding: 10px;
+  margin: 8px 0;
+  display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
+.reset-form input[type="password"]:focus {
+  border-color: #4CAF50;
+}
+
+.reset-form input.is-invalid {
+  border-color: #e3342f;
+}
+
+.reset-button {
+  background-color: #4CAF50;
   color: white;
-  font-size: 16px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-  background-color: #0056b3;
+.reset-button:hover {
+  background-color: #45a049;
 }
 
-.invalid-feedback {
-  color: red;
-  font-size: 12px;
+.reset-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
-.alert {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 4px;
-  font-size: 14px;
-  text-align: center;
+.reset-button:active {
+  transform: scale(0.98);
 }
 
-.alert-success {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.alert-danger {
-  background-color: #f8d7da;
-  color: #721c24;
+.error {
+  color: #e3342f;
+  font-size: 0.875em;
+  margin-top: -10px;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

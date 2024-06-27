@@ -1,0 +1,25 @@
+<div class="reset-container">
+    <h1>Por favor, ingrese su dirección de correo electrónico:</h1>
+    <form (ngSubmit)="sendResetLink()" #resetForm="ngForm" class="reset-form">
+      <div class="form-group">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email"
+          required
+          #emailInput="ngModel"
+          [ngClass]="{'is-invalid': emailInput.invalid && (emailInput.dirty || emailInput.touched)}"
+        />
+        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="error">
+          <div *ngIf="emailInput.errors?.['required']">El campo es obligatorio</div>
+          <div *ngIf="emailInput.errors?.['email']">Por favor, ingrese una dirección de correo válida.</div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="reset-button" [disabled]="resetForm.invalid">ENVIAR ENLACE DE RECUPERACIÓN</button>
+        <button type="button" class="cancel-button" (click)="goToLogin()">REGRESAR</button>
+      </div>
+    </form>
+  </div>
+  
