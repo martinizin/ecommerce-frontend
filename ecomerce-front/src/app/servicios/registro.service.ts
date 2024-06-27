@@ -74,6 +74,7 @@ export class RegistroService {
     const url = `${this.baseUrl}/verify-account?email=${encodeURIComponent(email)}&otp=${encodeURIComponent(otp)}`;
     return firstValueFrom(this.httpClient.put(url, {}, { responseType: 'text' }));
   }
+  
   requestPasswordReset(email: string): Observable<any> {
     return this.httpClient.post<any>('http://localhost:8095/send-reset', { email })
       .pipe(

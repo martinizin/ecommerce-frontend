@@ -6,7 +6,6 @@ import { ResetContrasenaComponent } from './componentes/reset-contrasena/reset-c
 import { ProductosComponent } from './componentes/productos/productos.component';
 import { FormularioProductosComponent } from './componentes/formulario-productos/formulario-productos.component';
 import { AuthGuard } from './auth.guard';
-import { CambiarContrasenaComponent } from './componentes/cambiar-contrasena/cambiar-contrasena.component';
 import { Roles } from './modelos/roles';
 import { CategoriasComponent } from './componentes/categorias/categorias.component';
 import { ClientesComponent } from './componentes/clientes/clientes.component';

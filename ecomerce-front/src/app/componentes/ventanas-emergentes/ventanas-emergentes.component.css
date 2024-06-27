@@ -1,13 +1,55 @@
-/* ventanas-emergentes.component.css */
-.thank-you-dialog {
-    text-align: center;
+.dialog-container {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+  transform: translateY(-20px);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.dialog-container h1 {
+  color: #4CAF50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dialog-container p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.dialog-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.dialog-button:hover {
+  background-color: #45a049;
+}
+
+.dialog-button:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .thank-you-dialog h1 {
-    margin-bottom: 20px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .thank-you-dialog p {
-    margin-bottom: 30px;
-  }
-  
+}

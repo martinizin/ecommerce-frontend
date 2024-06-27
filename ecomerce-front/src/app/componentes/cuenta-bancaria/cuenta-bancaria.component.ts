@@ -150,10 +150,10 @@ realizarCompra(): void {
     // });
   },
 error=>{
+  this.dialog.open(VentanasEmergentesComponent).afterClosed().subscribe(() => {
     this.router.navigate(['/mis-compras']);
+  });
 })
   //this.router.navigate(['/compra-realizada']);
 }
-
-
 }

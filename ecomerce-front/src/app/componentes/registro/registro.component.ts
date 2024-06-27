@@ -78,7 +78,7 @@ export class RegistroComponent {
         const otp = this.otpForm.value.otp;
         if (this.email) {  
           const response = await this.registroService.verifyOtp(this.email, otp);
-          console.log('Verificación OTP exitosa:', response);
+          alert('Verificación OTP exitosa:');
           this.router.navigate(['/login']);
         } else {
           console.error('El email no está definido.');
