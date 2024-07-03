@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private httpClient = inject(HttpClient);
-  private baseUrl: string = 'http://localhost:8095/api/users';
+  private baseUrl: string = 'https://backcom.fly.dev/api/users';
 
   getUser(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);

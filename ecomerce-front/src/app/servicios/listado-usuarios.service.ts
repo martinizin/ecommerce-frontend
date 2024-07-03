@@ -5,7 +5,7 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class ListadoUsuariosService {
-  private baseUrl = 'http://localhost:8095';
+  private baseUrl = 'https://backcom.fly.dev';
 
   constructor(private http: HttpClient) { }
 

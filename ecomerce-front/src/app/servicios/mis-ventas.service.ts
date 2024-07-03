@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MisVentasService {
-  private baseUrl = 'http://localhost:8095/api/v1/detallefactura';
+  private baseUrl = 'https://backcom.fly.dev/api/v1/detallefactura';
 
   constructor(private http: HttpClient) { }
 

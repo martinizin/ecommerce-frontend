@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CuentaBancariaService {
-  private baseUrl = 'http://localhost:8095/api/v1/cuenta';
-  private productoBaseUrl = 'http://localhost:8095/api/v1/producto/uploadPaymentProof';
+  private baseUrl = 'https://backcom.fly.dev/api/v1/cuenta';
+  private productoBaseUrl = 'https://backcom.fly.dev/api/v1/producto/uploadPaymentProof';
 
   constructor(private http: HttpClient) { }
 

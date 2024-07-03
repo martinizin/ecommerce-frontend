@@ -4,7 +4,7 @@
       type="password"
       [(ngModel)]="newPassword"
       name="newPassword"
-      placeholder="New Password"
+      placeholder="Nueva contraseña"
       required
       minlength="8"
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -21,7 +21,7 @@
       type="password"
       [(ngModel)]="confirmPassword"
       name="confirmPassword"
-      placeholder="Confirm Password"
+      placeholder="Confirma la contraseña"
       required
       #confirmPasswordInput="ngModel"
       [ngClass]="{'is-invalid': confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)}"
@@ -31,5 +31,5 @@
       <div *ngIf="confirmPassword !== newPassword">Las contraseñas deben coincidir.</div>
     </div>
   </div>
-  <button type="submit" class="reset-button" [disabled]="resetForm.invalid || confirmPassword !== newPassword">Reset Password</button>
+  <button type="submit" class="reset-button" [disabled]="resetForm.invalid || confirmPassword !== newPassword">Restablecer Contraseña</button>
 </form>

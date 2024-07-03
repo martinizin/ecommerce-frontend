@@ -18,7 +18,7 @@ export class CarritoCompraService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.httpClient.put('http://localhost:8095/api/v1/compras/compra', prodcts, { headers });
+    return this.httpClient.put('https://backcom.fly.dev/api/v1/compras/compra', prodcts, { headers });
     
   }
   obtenerToken(): string {

@@ -6,7 +6,7 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root',
 })
 export class ListadoProductosService {
-  private baseUrl: string = 'http://localhost:8095/api/v1/producto';
+  private baseUrl: string = 'https://backcom.fly.dev/api/v1/producto';
 
   constructor(private httpClient: HttpClient) {}
 

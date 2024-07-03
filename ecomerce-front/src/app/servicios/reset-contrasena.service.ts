@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ResetContrasenaService {
-  private apiUrl = 'http://localhost:8095';
+  private apiUrl = 'https://backcom.fly.dev';
 
   constructor(private http: HttpClient) { }
 
