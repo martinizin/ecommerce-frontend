@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "vite/deps",
+    "public": "/dist/ecomerce-front/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
