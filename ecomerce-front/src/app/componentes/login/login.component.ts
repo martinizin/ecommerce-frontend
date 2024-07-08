@@ -7,6 +7,9 @@ import { NgIf } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegistroService } from '../../servicios/registro.service';
 import { Router, RouterModule } from '@angular/router';
+import { AlertaloginComponent } from '../alertalogin/alertalogin.component';
+import { error } from 'console';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +23,9 @@ export class LoginComponent {
   registroService = inject(RegistroService);
   router = inject(Router);
 
-  constructor() {
+  constructor(
+    private dialog:MatDialog
+  ) {
     this.formulario = new FormGroup({
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
@@ -32,7 +37,10 @@ export class LoginComponent {
       const response = await this.registroService.login(this.formulario.value);
       console.log(response);
       this.router.navigate(['/home']);
-    }
+    }else 
+    this.dialog.open(AlertaloginComponent).afterClosed().subscribe(() => {
+     
+    });
   }
 
   goToRegister() {
