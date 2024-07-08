@@ -10,6 +10,7 @@ import { NgIf } from '@angular/common';
 import { CarritoCompraService } from '../../servicios/carrito-compra.service';
 import { VentanasEmergentesComponent } from '../ventanas-emergentes/ventanas-emergentes.component';
 import { privateDecrypt } from 'crypto';
+import { ConfirmacionComprobanteComponent } from '../confirmacion-comprobante/confirmacion-comprobante.component';
 
 @Component({
   selector: 'app-cuenta-bancaria',
@@ -122,8 +123,14 @@ subirComprobante(cuenta: any): void {
     this.cuentaBancariaService.subirComprobante(prd, this.total,this.selectedFile).subscribe(response => { //Voy a enviar el cartProducts (el json bonito)
       console.log('Comprobante subido:', response);
       // Aquí puedes añadir lógica adicional después de subir el comprobante
+    },
+error=>{
+      this.dialog.open(ConfirmacionComprobanteComponent).afterClosed().subscribe(() => {
+     
+      });
     });
   }
+  
 }
 crearCuentaBancaria(){
   this.router.navigate(['/crear-cuenta-bancaria'])

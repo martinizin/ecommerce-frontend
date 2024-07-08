@@ -9,7 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { RegistroService } from '../../servicios/registro.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
+import { EnlaceVerificacionComponent } from '../enlace-verificacion/enlace-verificacion.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registro',
@@ -35,8 +36,11 @@ export class RegistroComponent {
   email?: string;  // Usa el modificador opcional aquí
   registroService = inject(RegistroService);
   router = inject(Router);
+ 
 
-  constructor() {
+  constructor(
+    private dialog:MatDialog
+  ) {
     this.formulario = new FormGroup({
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -64,6 +68,8 @@ export class RegistroComponent {
         
         this.email = response.email;
         this.showOtpForm = true;
+        this.dialog.open(EnlaceVerificacionComponent).afterClosed().subscribe(() => {
+        });
       } catch (error) {
         console.error('Error en el registro:', error);
       }

@@ -44,14 +44,14 @@
         <mat-error *ngIf="formulario.get('rol')?.hasError('required')">El campo Rol es obligatorio</mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit">Enviar</button>
+      <button mat-raised-button color="primary" type="submit" (click)="goToDashboard()">Enviar</button>
      
     </form>
     <button mat-button color="accent" (click)="goToDashboard()">Regresar</button>
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="showOtpForm">
+<!-- <mat-card *ngIf="showOtpForm">
   <mat-card-header>
     <mat-card-title>Verificación OTP</mat-card-title>
     <mat-card-title>Por favor, ingrese el código enviado a su correo electrónico para verificar su cuenta</mat-card-title>
@@ -68,4 +68,4 @@
     </form>
     
   </mat-card-content>
-</mat-card> 
+</mat-card>  -->
