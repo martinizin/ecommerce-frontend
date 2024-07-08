@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CarritoCompraService {
-  private baseUrl: string = 'http://localhost:8095/api/v1/producto';
+  private baseUrl: string = 'https://backcom.fly.dev/api/v1/producto';
   private carrito = new BehaviorSubject<any[]>([]);
   
   carrito$ = this.carrito.asObservable();

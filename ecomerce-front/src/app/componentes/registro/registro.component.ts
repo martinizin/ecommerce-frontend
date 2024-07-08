@@ -72,6 +72,8 @@ export class RegistroComponent {
         });
       } catch (error) {
         console.error('Error en el registro:', error);
+        this.dialog.open(EnlaceVerificacionComponent).afterClosed().subscribe(() => {
+        });
       }
     } else {
       this.formulario.markAllAsTouched();
