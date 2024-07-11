@@ -16,7 +16,7 @@ export class RegistroService {
   private baseUrl: string;
   
   constructor(private _router: Router) {
-    this.baseUrl = 'https://backcom.fly.dev';
+    this.baseUrl = 'https://backk.fly.dev';
   }
 
   register(formValue: any) {
@@ -76,7 +76,7 @@ export class RegistroService {
   }
   
   requestPasswordReset(email: string): Observable<any> {
-    return this.httpClient.post<any>('https://backcom.fly.dev/send-reset', { email })
+    return this.httpClient.post<any>('https://backk.fly.dev/send-reset', { email })
       .pipe(
         catchError(error => {
           throw error; // Puedes manejar el error aquí o simplemente lanzarlo para manejarlo en el componente
@@ -85,7 +85,7 @@ export class RegistroService {
   }
 
   resetPassword(email: string, password: string): Observable<any> {
-    return this.httpClient.post<any>('https://backcom.fly.dev/reset-password', { email, password })
+    return this.httpClient.post<any>('https://backk.fly.dev/reset-password', { email, password })
       .pipe(
         catchError(error => {
           throw error; // Puedes manejar el error aquí o simplemente lanzarlo para manejarlo en el componente

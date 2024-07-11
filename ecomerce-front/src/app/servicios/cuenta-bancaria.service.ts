@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CuentaBancariaService {
-  private baseUrl = 'https://backcom.fly.dev/api/v1/cuenta';
-  private productoBaseUrl = 'https://backcom.fly.dev/api/v1/producto/uploadPaymentProof';
+  private baseUrl = 'https://backk.fly.dev/api/v1/cuenta';
+  private productoBaseUrl = 'https://backk.fly.dev/api/v1/producto/uploadPaymentProof';
 
   constructor(private http: HttpClient) { }
 
@@ -42,6 +42,11 @@ export class CuentaBancariaService {
       'Authorization': `Bearer ${token}`
     });
     return this.http.get(`${this.baseUrl}/${id}`, { headers });
+  }
+  verificarCuentaExistente(username: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/verificar?username=${username}`, {
+      headers: this.getHeaders(),
+    });
   }
 
   subirComprobante(productos: number[], valorTotal: number, archivo: File): Observable<any> {

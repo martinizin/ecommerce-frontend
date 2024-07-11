@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   isEmprendedor:boolean=false;
   isAdmin:boolean=false;
   isProCliente:boolean=false;
-
+  cuentaExistente: boolean = false;
   constructor() {}
 
   ngOnInit(): void {
@@ -68,6 +68,13 @@ export class HomeComponent implements OnInit {
 
       }
       console.log(this.Role);
+    }
+  }
+  verificarCuentaExistente(): void {
+    if (this.username) {
+      this.listadoCuentas.verificarCuentaExistente(this.username).subscribe(response => {
+        this.cuentaExistente = response.existe; // Asume que la respuesta tiene una propiedad `existe`
+      });
     }
   }
 
@@ -107,6 +114,9 @@ export class HomeComponent implements OnInit {
   }
   navigateToListProducts(){
     this.router.navigate(['/todos-productos']);
+  }
+  navigateToCrearCuenta():void{
+    this.router.navigate(['/crear-cuenta-bancaria'])
   }
   navigateToMisCuentas(){
     //this.listadoCuentas.listarCuentasBancarias();

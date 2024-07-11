@@ -6,8 +6,8 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class RealizarCompraService {
-  private baseUrl = 'https://backcom.fly.dev/api/v1/producto/';
-  private imagenUrl = 'https://backcom.fly.dev/api/v1/imagen/crear';
+  private baseUrl = 'https://backk.fly.dev/api/v1/producto/';
+  private imagenUrl = 'https://backk.fly.dev/api/v1/imagen/crear';
 
   constructor(private http: HttpClient) { }
 

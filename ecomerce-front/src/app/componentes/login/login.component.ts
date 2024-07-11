@@ -31,16 +31,19 @@ export class LoginComponent {
       password: new FormControl('', Validators.required)
     });
   }
-
   async onSubmit() {
     if (this.formulario.valid) {
-      const response = await this.registroService.login(this.formulario.value);
-      console.log(response);
-      this.router.navigate(['/home']);
-    }else 
-    this.dialog.open(AlertaloginComponent).afterClosed().subscribe(() => {
-     
-    });
+      try {
+        const response = await this.registroService.login(this.formulario.value);
+        console.log(response);
+        this.router.navigate(['/home']);
+      } catch (error) {
+        console.error('Error en el login', error);
+        this.dialog.open(AlertaloginComponent).afterClosed().subscribe(() => {
+          // Aquí puedes realizar alguna acción adicional después de cerrar la ventana emergente
+        });
+      }
+    }
   }
 
   goToRegister() {
