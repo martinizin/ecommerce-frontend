@@ -27,13 +27,13 @@
     </mat-card-content>
 
   </mat-card>
-  <div class="button-crear-container" *ngIf="estadoValorTotal">
-    <button mat-raised-button color="accent" type="button" (click)="realizarCompra()">FINALIZAR COMPRA</button>
+  <div class="button-crear-container" >
+    <button *ngIf="estadoValorTotal" mat-raised-button color="accent" type="button" (click)="realizarCompra()">FINALIZAR COMPRA</button>
   </div>
   <div class="button-crear-container"*ngIf="estadoValorTotal">
-    <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()"*ngIf="isEmprendedor">AÑADIR CUENTA BANCARIA</button>
+  <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()"*ngIf="isEmprendedor || estadoValorTotal">AÑADIR CUENTA BANCARIA</button>
   </div>
   <div class="button-container">
-    <button mat-raised-button color="accent" type="button" (click)="regresar()">REGRESAR</button>
+    <button *ngIf="estadoValorTotal" mat-raised-button color="accent" type="button" (click)="regresar()">REGRESAR</button>
   </div>
 </div>
