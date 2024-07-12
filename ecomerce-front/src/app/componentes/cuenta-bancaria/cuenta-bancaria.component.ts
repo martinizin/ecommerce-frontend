@@ -47,6 +47,11 @@ export class CuentaBancariaComponent implements OnInit{
     else
       this.cargarCuentasBancariasporEmprendedor(localStorage.getItem('username')||'');
     console.log(this.cartProducts);
+    if(!this.total){
+      this.total=0;
+      
+    }
+    console.log(this.total);
   //  this.route.params.subscribe(params => {
   //   if (params['idEmprendedor']) {
   //     this.idEmprendedor = + params['idEmprendedor'];
