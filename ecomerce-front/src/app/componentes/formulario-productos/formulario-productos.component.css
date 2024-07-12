@@ -1,44 +1,60 @@
 .form-container {
   max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 40px auto;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: white;
+  background: #ffffff;
+  transition: all 0.3s ease-in-out;
 }
 
-.form-field {
-  width: 100%;
-  margin-bottom: 16px;
+.form-container:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .form-title {
   text-align: center;
   color: #3f51b5;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
-.form-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-button {
-  transition: transform 0.3s ease;
-}
-
-button:hover {
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(1px);
+.form-field {
+  margin-bottom: 20px;
 }
 
 .mat-form-field {
   width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
-.mat-raised-button {
+.mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: #3f51b5;
-  color: white;
+}
+
+input.mat-input {
+  transition: border-color 0.3s;
+}
+
+input.mat-input:focus {
+  border-bottom: 2px solid #3f51b5;
+}
+
+button.mat-raised-button {
+  margin-right: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.mat-raised-button:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px);
+}
+
+button.mat-button {
+  transition: color 0.3s, transform 0.2s;
+}
+
+button.mat-button:hover {
+  color: #303f9f;
+  transform: translateY(-2px);
 }
