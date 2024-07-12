@@ -18,12 +18,12 @@ export class MisComprasComponent {
     private router:Router) { }
 
   ngOnInit(): void {
-      this.username = localStorage.getItem('seller_username')|| ''; //obtiene el item username sino (||) trae vacio
+      this.username = localStorage.getItem('seller_username')|| '';//obtiene el item username sino (||) trae vacio
       this.listarVentas();
     }
 
     listarVentas(): void {
-      this.misVentasService.listarVentaporId()
+      this.misVentasService.listarVentaporId(this.username)
         .subscribe((productos: any) => {
           this.ventas = productos.filter((x:any)=>x.buyerUsername.includes(localStorage.getItem('username')|| '')) //
           console.log(this.ventas);
