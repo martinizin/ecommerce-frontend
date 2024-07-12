@@ -1,4 +1,4 @@
-<h2 class="form-title">Nuevo Producto</h2>
+<!-- <h2 class="form-title">Nuevo Producto</h2>
 
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="createOrUpdate()" class="product-form">
@@ -21,7 +21,7 @@
         formControlName="stockproducto"
         (input)="onInputChange($event)">
       <mat-error *ngIf="form.get('stockproducto')?.setErrors">
-        Caracter no permitido
+        Ingrese un valor de stock válido
       </mat-error>
     </mat-form-field>
     
@@ -42,5 +42,52 @@
       <button mat-button type="button" (click)="cancel()">Cancelar</button>
     </div>
     
+  </form>
+</div> -->
+<h2 class="form-title">Nuevo Producto</h2>
+
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="createOrUpdate()" class="product-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>NOMBRE</mat-label>
+      <input matInput type="text" placeholder="Nombre" formControlName="nomproducto">
+      <mat-error *ngIf="form.get('nomproducto')?.errors?.['required']">El nombre es requerido</mat-error>
+      <mat-error *ngIf="form.get('nomproducto')?.errors?.['required']('minlength')">El nombre debe tener al menos 3 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>DESCRIPCIÓN</mat-label>
+      <input matInput type="text" placeholder="Descripción" formControlName="descripcionproducto">
+      <mat-error *ngIf="form.get('descripcionproducto')?.errors?.['required']('required')">La descripción es requerida</mat-error>
+      <mat-error *ngIf="form.get('descripcionproducto')?.errors?.['required']('minlength')">La descripción debe tener al menos 10 caracteres</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>STOCK</mat-label>
+      <input matInput type="number" placeholder="Stock" formControlName="stockproducto">
+      <mat-error *ngIf="form.get('stockproducto')?.errors?.['required']">El stock es obligatorio</mat-error>
+      <mat-error *ngIf="form.get('stockproducto')?.errors?.['required']('min')">El stock debe ser al menos 1</mat-error>
+      <mat-error *ngIf="form.get('stockproducto')?.errors?.['required']('invalidStock')">El stock debe ser un número entero positivo</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>PRECIO</mat-label>
+      <input matInput type="number" placeholder="Precio" formControlName="precioprducto">
+      <mat-error *ngIf="form.get('precioprducto')?.errors?.['required']('required')">El precio es obligatorio</mat-error>
+      <mat-error *ngIf="form.get('precioprducto')?.errors?.['required']('min')">El precio debe ser mayor que 0</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>CATEGORÍA</mat-label>
+      <mat-select formControlName="categoria">
+        <mat-option *ngFor="let category of categoria" [value]="category">{{ category }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('categoria')?.errors?.['required']('required')">Seleccione una categoría</mat-error>
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Guardar Producto</button>
+      <button mat-button type="button" (click)="cancel()">Cancelar</button>
+    </div>
   </form>
 </div>

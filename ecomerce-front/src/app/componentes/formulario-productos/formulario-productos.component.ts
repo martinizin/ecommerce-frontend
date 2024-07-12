@@ -43,12 +43,12 @@ export class FormularioProductosComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      nomproducto: ['', [Validators.required]],
-      descripcionproducto: ['', [Validators.required]],
-      stockproducto: ['', [Validators.required, this.validateStock]],
-      precioprducto: ['', [Validators.required]],
+      nomproducto: ['', [Validators.required, Validators.minLength(3)]],
+      descripcionproducto: ['', [Validators.required, Validators.minLength(10)]],
+      stockproducto: ['', [Validators.required, Validators.min(1), this.validateStock]],
+      precioprducto: ['', [Validators.required, Validators.min(0.01)]],
+      categoria: ['', Validators.required],
       imagen: [''],
-      categoria: ['', [Validators.required]]
     });
   }
 
@@ -164,9 +164,9 @@ export class FormularioProductosComponent implements OnInit {
       }
     );
   }
-  validateStock(control: AbstractControl): { [key: string]: boolean } | null {
-    const value = control.value;
-    if (value < 0 || value % 1 !== 0) {
+  validateStock(control: AbstractControl): { [key: string]: any } | null {
+    const value = Number(control.value);
+    if (value < 0 || Math.floor(value) !== value) {
       return { invalidStock: true };
     }
     return null;
@@ -182,7 +182,4 @@ export class FormularioProductosComponent implements OnInit {
       this.form.get('stockproducto')?.setErrors(null);
     }
   }
-  
-  
-
   }
