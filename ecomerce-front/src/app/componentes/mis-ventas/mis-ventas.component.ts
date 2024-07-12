@@ -22,7 +22,7 @@ export class MisVentasComponent {
     private router:Router) { }
 
   ngOnInit(): void {
-      this.username = localStorage.getItem('seller_username')|| ''; //obtiene el item username sino (||) trae vacio
+      this.username = localStorage.getItem('sellerUsername')|| ''; //obtiene el item username sino (||) trae vacio
       this.listarVentas();
     }
 

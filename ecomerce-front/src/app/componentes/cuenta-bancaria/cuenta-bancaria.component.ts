@@ -51,7 +51,8 @@ export class CuentaBancariaComponent implements OnInit{
     if(this.total!=0){
       this.estadoValorTotal=true;
     }
-    console.log(this.total);
+    console.log(this.estadoValorTotal);
+    
   //  this.route.params.subscribe(params => {
   //   if (params['idEmprendedor']) {
   //     this.idEmprendedor = + params['idEmprendedor'];
