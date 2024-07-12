@@ -39,8 +39,69 @@ export class MiCuentaBancariaComponent {
     private route:ActivatedRoute,
     private dialog:MatDialog
   ) {}
-  
-  CuentaporId(idCuenta:number){
-    this.cuentaBancariaService.listarCuentasBancariasPorId(idCuenta);
+  ngOnInit(): void {
+    if(this.idEmprendedor)
+      this.cargarCuentasBancarias(this.idEmprendedor);
+    else
+      this.cargarCuentasBancariasporEmprendedor(localStorage.getItem('username')||'');
+    console.log(this.cartProducts);
+  //  this.route.params.subscribe(params => {
+  //   if (params['idEmprendedor']) {
+  //     this.idEmprendedor = + params['idEmprendedor'];
+  //     this.cargarCuentasBancarias(this.idEmprendedor);
+  //   }
+  //   else{
+  //     this.cargarCuentasBancariasporIdEmprendedor(localStorage.getItem('username')||'');
+  //   }
+    
+  //   this.carritoService.carrito$.subscribe(productos => {
+  //     this.productosAgrupados = this.agruparProductosPorEmprendedor(productos);
+  //   });
+
+  //   this.route.queryParams.subscribe(params=>{
+  //     if(params['total']){
+  //       this.total = +params['total'];
+  //     }
+  //   })
+  // });
+
   }
+  agruparProductosPorEmprendedor(productos: any[]): any[] {
+    const agrupados: any = {};
+    productos.forEach(producto => {
+      const emprendedor = producto.user.username;
+      if (!agrupados[emprendedor]) {
+        agrupados[emprendedor] = [];
+      }
+      agrupados[emprendedor].push(producto);
+    });
+    return Object.keys(agrupados).map(key => ({
+      emprendedor: key,
+      productos: agrupados[key],
+      total: agrupados[key].reduce((acc: number, p: any) => acc + (p.precioprducto * p.quantity), 0)
+    }));
+  }
+
+  cargarCuentasBancarias(id:number): void {
+    this.cuentaBancariaService.listarCuentasBancarias().subscribe(
+      response => {
+        this.cuentasBancarias = response.filter((x:any)=> x.iduser.id == id);
+      },
+      error => {
+        console.error('Error al listar cuentas:', error);
+      }
+    );
+}
+cargarCuentasBancariasporEmprendedor(username:string):void{
+  this.cuentaBancariaService.listarCuentasBancarias().subscribe(
+    response=>{
+      this.cuentasBancarias=response.filter((x:any)=>x.iduser.username.includes(username));
+    }
+  )
+  
+}
+CuentaporId(idCuenta:number){
+  this.cuentaBancariaService.listarCuentasBancariasPorId(idCuenta);
+}
+ 
 }

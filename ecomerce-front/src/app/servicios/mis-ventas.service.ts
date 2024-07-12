@@ -25,13 +25,13 @@ export class MisVentasService {
 
     return this.http.get<any>(`${this.baseUrl}/listar`, { headers });
   }
-  listarVentaporId(): Observable<any> {
+  listarVentaporId(id:number): Observable<any> {
     const token = this.obtenerToken();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.baseUrl}/listar`, { headers });
+    return this.http.get(`${this.baseUrl}/listar/${id}`, { headers });
   }
   // En MisVentasService
 verificarVenta(id: number): Observable<any> {
