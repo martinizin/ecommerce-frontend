@@ -13,7 +13,7 @@
           <mat-card-content>
             <p><strong>Número de Cuenta:</strong> {{ cuenta.numCuenta }}</p>
             <p><strong>Nombre:</strong> {{ cuenta.nombre }} {{ cuenta.apellido }}</p>
-            <p><strong>VALOR TOTAL A PAGAR:</strong> {{total}}</p>
+          <p *ngIf="total!=0"><strong>VALOR TOTAL A PAGAR:</strong> {{total}}</p>
           </mat-card-content>
         </mat-card>
         <mat-card-actions class="button-crear-container">
