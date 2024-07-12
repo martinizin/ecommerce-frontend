@@ -23,7 +23,7 @@ export class MisComprasComponent {
     }
 
     listarVentas(): void {
-      this.misVentasService.listarVentaporId(this.username)
+      this.misVentasService.listarVentaporId()
         .subscribe((productos: any) => {
           this.ventas = productos.filter((x:any)=>x.buyerUsername.includes(localStorage.getItem('username')|| '')) //
           console.log(this.ventas);

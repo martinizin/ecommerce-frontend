@@ -10,10 +10,22 @@
       <mat-label>DESCRIPCIÓN</mat-label>
       <input matInput id="description" type="text" placeholder="Descripción" formControlName="descripcionproducto">
     </mat-form-field>
+    
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>STOCK</mat-label>
-      <input matInput id="stock" type="number" placeholder="Stock" formControlName="stockproducto">
+      <input 
+        matInput 
+        id="stock" 
+        type="number" 
+        placeholder="Stock" 
+        formControlName="stockproducto"
+        (input)="onInputChange($event)">
+      <mat-error *ngIf="form.get('stockproducto')?.setErrors">
+        Caracter no permitido
+      </mat-error>
     </mat-form-field>
+    
+    
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>PRECIO</mat-label>
       <input matInput id="price" type="number" placeholder="Precio" formControlName="precioprducto">

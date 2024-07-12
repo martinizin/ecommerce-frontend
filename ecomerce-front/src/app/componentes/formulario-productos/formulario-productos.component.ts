@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -45,7 +45,7 @@ export class FormularioProductosComponent implements OnInit {
     this.form = this.fb.group({
       nomproducto: ['', [Validators.required]],
       descripcionproducto: ['', [Validators.required]],
-      stockproducto: ['', [Validators.required]],
+      stockproducto: ['', [Validators.required, this.validateStock]],
       precioprducto: ['', [Validators.required]],
       imagen: [''],
       categoria: ['', [Validators.required]]
@@ -163,6 +163,24 @@ export class FormularioProductosComponent implements OnInit {
         // Manejar el error, mostrar mensaje al usuario, etc.
       }
     );
+  }
+  validateStock(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value < 0 || value % 1 !== 0) {
+      return { invalidStock: true };
+    }
+    return null;
+  }
+
+  onInputChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const value = inputElement.value;
+  
+    if (value.includes('.') || Number(value) < 0) {
+      this.form.get('stockproducto')?.setErrors({ invalidStock: true });
+    } else {
+      this.form.get('stockproducto')?.setErrors(null);
+    }
   }
   
   

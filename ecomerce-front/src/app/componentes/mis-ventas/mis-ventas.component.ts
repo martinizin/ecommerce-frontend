@@ -27,7 +27,7 @@ export class MisVentasComponent {
     }
 
     listarVentas(): void {
-      this.misVentasService.listarVentaporId(this.username)
+      this.misVentasService.listarVentaporId()
         .subscribe((productos: any) => {
           this.ventas = productos; //
           console.log(this.ventas);

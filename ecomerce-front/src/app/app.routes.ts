@@ -22,7 +22,6 @@ import { CuentaBancariaComponent } from './componentes/cuenta-bancaria/cuenta-ba
 import { FormularioCuentaBancariaComponent } from './componentes/formulario-cuenta-bancaria/formulario-cuenta-bancaria.component';
 import { VentanasEmergentesComponent } from './componentes/ventanas-emergentes/ventanas-emergentes.component';
 import { SendResetComponent } from './componentes/send-reset/send-reset.component';
-import { MiCuentaBancariaComponent } from './componentes/mi-cuenta-bancaria/mi-cuenta-bancaria.component';
 
 export const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
@@ -41,7 +40,7 @@ export const routes: Routes = [
     {path:'productos',component:ClientesComponent},
     {path:'crear-cuenta-bancaria',component:FormularioCuentaBancariaComponent},
     {path:'cuenta-bancaria/:idEmprendedor',component:CuentaBancariaComponent},
-    {path:'cuenta-bancaria',component:MiCuentaBancariaComponent},
+    {path:'cuenta-bancaria',component:CuentaBancariaComponent},
     {path:'realizar-compra',component:RealizarCompraComponent},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
     {path:'crear-categoria',component:CategoriasComponent},
