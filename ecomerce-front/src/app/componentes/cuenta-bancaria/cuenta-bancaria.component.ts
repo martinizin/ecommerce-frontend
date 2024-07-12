@@ -25,6 +25,7 @@ export class CuentaBancariaComponent implements OnInit{
   isEmprendedor:boolean=false;
   cuentasBancarias: any[] = [];
   username: string | null = '';
+  estadoValorTotal:boolean=false;
   selectedFile: File | null = null;
   @Input() idEmprendedor:number=0;
   producto: any;
@@ -47,9 +48,8 @@ export class CuentaBancariaComponent implements OnInit{
     else
       this.cargarCuentasBancariasporEmprendedor(localStorage.getItem('username')||'');
     console.log(this.cartProducts);
-    if(!this.total){
-      this.total=0;
-      
+    if(this.total==0){
+      this.estadoValorTotal=true;
     }
     console.log(this.total);
   //  this.route.params.subscribe(params => {
