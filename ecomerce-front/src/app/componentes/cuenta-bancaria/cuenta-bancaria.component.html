@@ -16,7 +16,7 @@
             <p *ngIf="estadoValorTotal"><strong>VALOR TOTAL A PAGAR:</strong> {{total}}</p>
           </mat-card-content>
         </mat-card>
-        <mat-card-actions class="button-crear-container">
+        <mat-card-actions class="button-crear-container"*ngIf="estadoValorTotal">
             <input type="file" (change)="onFileSelected($event)">
             <button mat-raised-button color="blue" (click)="subirComprobante(cuenta)">Subir Comprobante</button>
             <div class="button-carrito-container">
@@ -27,10 +27,10 @@
     </mat-card-content>
 
   </mat-card>
-  <div class="button-crear-container">
+  <div class="button-crear-container" *ngIf="estadoValorTotal">
     <button mat-raised-button color="accent" type="button" (click)="realizarCompra()">FINALIZAR COMPRA</button>
   </div>
-  <div class="button-crear-container">
+  <div class="button-crear-container"*ngIf="estadoValorTotal">
     <button mat-raised-button color="accent" type="button" (click)="crearCuentaBancaria()"*ngIf="isEmprendedor">AÑADIR CUENTA BANCARIA</button>
   </div>
   <div class="button-container">

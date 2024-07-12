@@ -29,7 +29,7 @@ export class MisVentasComponent {
     listarVentas(): void {
       this.misVentasService.listarVentaporId()
         .subscribe((productos: any) => {
-          this.ventas = productos; //
+          this.ventas = productos.filter((x:any)=>x.sellerUsername.includes(localStorage.getItem('username')|| '')) //
           console.log(this.ventas);
         });
     }
