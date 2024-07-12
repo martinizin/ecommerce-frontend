@@ -1,0 +1,16 @@
+<div class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>DATOS BANCARIOS DEL EMPRENDEDOR</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div *ngFor="let cuenta of cuentasBancarias" class="cuenta-card">
+          <mat-card class="cuenta-details-card">
+            <mat-card-header>
+              <mat-card-title>{{ cuenta.banco }}</mat-card-title>
+              <mat-card-subtitle>{{ cuenta.tipCuenta }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p><strong>Número de Cuenta:</strong> {{ cuenta.numCuenta }}</p>
+              <p><strong>Nombre:</strong> {{ cuenta.nombre }} {{ cuenta.apellido }}</p>
+            </mat-card-content>
