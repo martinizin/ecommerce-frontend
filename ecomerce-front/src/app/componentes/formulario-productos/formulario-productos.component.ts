@@ -173,7 +173,7 @@ export class FormularioProductosComponent implements OnInit {
   }
   validatePrecio(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
-    if (value <= 0 || value % 1 !== 0) {
+    if (value <= 0) {
       return { invalidStock: true };
     }
     return null;

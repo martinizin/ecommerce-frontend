@@ -40,8 +40,8 @@
             <th>EMAIL</th>
             <th>NOMBRE</th>
             <th>NUMERO</th>
-            <th>ACCIONES</th>
             <th>ROL</th>
+            <th>ACCIONES</th>
           </tr>
         </thead>
         <tbody>
@@ -50,7 +50,11 @@
             <td class="category-name">{{ user.email }}</td>
             <td class="category-name">{{ user.username }}</td>
             <td class="category-name">{{ user.numero }}</td>
-            <td class="category-name">{{ user.rol }}</td>
+            <td class="category-name">
+              <span *ngFor="let role of user.rol; let i = index">
+                {{ role.rol }}<span *ngIf="i < user.rol.length - 1">, </span>
+              </span>
+            </td>
             <td>
               <div class="delete-button" (click)="eliminarUsuario(user.id)">
                 <button mat-icon-button color="warn">

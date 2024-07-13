@@ -2,19 +2,19 @@ import { Component, OnInit,inject } from '@angular/core';
 import { ListadoUsuariosService } from '../../servicios/listado-usuarios.service';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-listado-usuarios',
   standalone: true,
-  imports: [MatToolbar,MatIcon,NgFor],
+  imports: [MatToolbar,MatIcon,NgFor,NgIf],
   templateUrl: './listado-usuarios.component.html',
   styleUrl: './listado-usuarios.component.css'
 })
 export class ListadoUsuariosComponent implements OnInit {
   router = inject(Router);
   users:any[]=[];
-  displayedColumns: string[] = ['id', 'email', 'username', 'numero', 'actions'];
+  displayedColumns: string[] = ['id', 'email', 'username', 'numero','rol', 'actions'];
   constructor(private listadoUsuarios:ListadoUsuariosService ){
   }
 
