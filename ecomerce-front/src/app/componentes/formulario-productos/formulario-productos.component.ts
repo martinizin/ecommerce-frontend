@@ -46,7 +46,7 @@ export class FormularioProductosComponent implements OnInit {
       nomproducto: ['', [Validators.required]],
       descripcionproducto: ['', [Validators.required]],
       stockproducto: ['', [Validators.required, this.validateStock]],
-      precioprducto: ['', [Validators.required]],
+      precioprducto: ['', [Validators.required,this.validatePrecio]],
       imagen: [''],
       categoria: ['', [Validators.required]]
     });
@@ -165,6 +165,13 @@ export class FormularioProductosComponent implements OnInit {
     );
   }
   validateStock(control: AbstractControl): { [key: string]: boolean } | null {
+    const value = control.value;
+    if (value <= 0 || value % 1 !== 0) {
+      return { invalidStock: true };
+    }
+    return null;
+  }
+  validatePrecio(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
     if (value <= 0 || value % 1 !== 0) {
       return { invalidStock: true };
