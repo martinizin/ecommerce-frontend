@@ -1,4 +1,4 @@
-<!-- <h2 class="form-title">Nuevo Producto</h2>
+<h2 class="form-title">Nuevo Producto</h2>
 
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="createOrUpdate()" class="product-form">
@@ -29,6 +29,9 @@
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>PRECIO</mat-label>
       <input matInput id="price" type="number" placeholder="Precio" formControlName="precioprducto">
+      <mat-error *ngIf="form.get('precioprducto')?.setErrors">
+        Ingrese un valor de de venta válido
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field">
@@ -43,8 +46,9 @@
     </div>
     
   </form>
-</div> -->
-<h2 class="form-title">Nuevo Producto</h2>
+</div>
+
+<!-- <h2 class="form-title">Nuevo Producto</h2>
 
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="createOrUpdate()" class="product-form">
@@ -89,4 +93,4 @@
       <button mat-button type="button" (click)="cancel()">Cancelar</button>
     </div>
   </form>
-</div>
+</div> -->
