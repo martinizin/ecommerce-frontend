@@ -67,6 +67,7 @@ export class CategoriasComponent implements OnInit {
       console.error('El nombre de la categoría no puede estar vacío');
     }
   }
+  
   refreshrl(){
     const currentUrl = this.router.url; this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => { 
       this.router.navigate([currentUrl]); });

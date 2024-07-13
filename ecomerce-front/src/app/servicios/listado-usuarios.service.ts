@@ -37,8 +37,6 @@ export class ListadoUsuariosService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-
     return this.http.delete(`${this.baseUrl}/user/${id}`);
-    
   }
 }
