@@ -56,7 +56,7 @@ export class CategoriasComponent implements OnInit {
         response => {
           console.log('Categoría eliminada exitosamente:', response);
           // Recargar la página después de eliminar la categoría
-          location.reload();
+          this.refreshrl();
         },
         error => {
           console.error('Error al eliminar categoría:', error);

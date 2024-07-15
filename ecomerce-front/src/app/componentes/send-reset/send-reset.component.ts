@@ -24,6 +24,7 @@ export class SendResetComponent {
       alert('DIRECCIÓN DE CORREO NO ENCONTRADA!');
     }, error => {
       alert('HEMOS ENVIADO UN LINK DE RECUPERACIÓN A TU CORREO ELECTRÓNICO, PUEDES CERRAR ESTA VENTANA:D');
+      this.router.navigate(['/login']);
     });
   }
   goToLogin(){

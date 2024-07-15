@@ -53,7 +53,7 @@ export class AgregarCategoriasService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post(`${this.baseUrl}/delete/${nombreCategoria}`, null, { headers });
+    return this.http.delete(`${this.baseUrl}/delete/${nombreCategoria}`);
   }
 
   
