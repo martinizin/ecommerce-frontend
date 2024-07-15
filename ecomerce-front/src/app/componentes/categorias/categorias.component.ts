@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AlertaloginComponent } from '../alertalogin/alertalogin.component';
+import { VentanaCategoriaComponent } from '../ventana-categoria/ventana-categoria.component';
 @Component({
   selector: 'app-categorias',
   standalone:true,
@@ -16,7 +19,9 @@ export class CategoriasComponent implements OnInit {
   categorias: string[] = [];
   nombreCategoria: string = '';
 
-  constructor(private categoriaService: AgregarCategoriasService) { }
+  constructor(
+    private dialog:MatDialog,
+    private categoriaService: AgregarCategoriasService) { }
 
   ngOnInit(): void {
     this.listarCategorias();
@@ -54,16 +59,20 @@ export class CategoriasComponent implements OnInit {
     if (nombre) {
       this.categoriaService.eliminarCategoria(nombre).subscribe(
         response => {
-          console.log('Categoría eliminada exitosamente:', response);
+          console.log('Error al eliminar categoría!', response);
           // Recargar la página después de eliminar la categoría
           this.refreshrl();
         },
         error => {
-          console.error('Error al eliminar categoría:', error);
+          console.error('Categoría eliminada exitosamente!', error);
+          this.dialog.open(VentanaCategoriaComponent).afterClosed().subscribe(() => {
+            // Aquí puedes realizar alguna acción adicional después de cerrar la ventana emergente
+          });
           this.refreshrl();
         }
       );
     } else {
+      alert("EL CAMPO NO PUEDE ESTAR VACIO!")
       console.error('El nombre de la categoría no puede estar vacío');
     }
   }
