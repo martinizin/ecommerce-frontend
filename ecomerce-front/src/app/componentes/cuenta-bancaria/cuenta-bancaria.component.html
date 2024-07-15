@@ -4,11 +4,12 @@
       <mat-card-title>DATOS BANCARIOS DEL EMPRENDEDOR</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-card-header>
+      <mat-card-header class="vertical-paragraphs">
         <p *ngIf="estadoValorTotal"><strong>RECUERDA!</strong></p>
-        <p *ngIf="estadoValorTotal"><strong>Sube primero tu comprobante antes de finalizar la compra,caso contrario no se podrá validar tu transacción</strong></p>
+        <p *ngIf="estadoValorTotal"><strong>Sube primero tu comprobante antes de finalizar la compra, caso contrario no se podrá validar tu transacción</strong></p>
         <p *ngIf="estadoValorTotal"><strong>SUBA EL COMPROBANTE A LA CUENTA DE SU PREFERENCIA</strong></p>
-      </mat-card-header>
+        <p *ngIf="estadoValorTotal"><strong>Espera el mensaje de confirmación de que tu comprobante fue subido antes de Finalizar Compra</strong></p>
+    </mat-card-header>    
       <div *ngFor="let cuenta of cuentasBancarias" class="cuenta-card">
         <mat-card class="cuenta-details-card">
           <mat-card-header>
