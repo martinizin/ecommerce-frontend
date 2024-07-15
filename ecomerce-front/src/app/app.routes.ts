@@ -50,7 +50,7 @@ export const routes: Routes = [
     { path: 'carrito', component: CarritoComprasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_CLIENT','ROLE_ADMIN']} },
     { path:'fin-compra',component:VentanasEmergentesComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_ADMIN','ROLE_CLIENT','ROLE_EMPRENDEDOR']}},
     { path:'mis-compras',component:MisComprasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_CLIENT','ROLE_EMPRENDEDOR']}},
-    { path:'mis-ventas',component:MisVentasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_CLIENT','ROLE_CLIENT']}},
+    { path:'mis-ventas',component:MisVentasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_CLIENT','ROLE_EMPRENDEDOR']}},
     { path: '**', redirectTo: 'dashboard' } ,
     //{ path: 'home', canActivate: [AuthGuard], data: { roles: [Roles.EMPRENDEDOR, Roles.ADMIN,Roles.CLIENTE] }, component: HomeComponent },
 ];
