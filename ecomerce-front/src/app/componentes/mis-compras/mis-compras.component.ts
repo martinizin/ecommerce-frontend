@@ -11,22 +11,22 @@ import { NgFor } from '@angular/common';
 })
 export class MisComprasComponent {
   id: any[] = [];
-  ventas: any[] = [];
+  compras: any[] = [];
   username:string="";
   constructor(
     private misVentasService: MisVentasService,
     private router:Router) { }
 
   ngOnInit(): void {
-      this.username = localStorage.getItem('seller_username')|| '';//obtiene el item username sino (||) trae vacio
-      this.listarVentas();
+      this.username = localStorage.getItem('buyerUsername')|| '';//obtiene el item username sino (||) trae vacio
+      this.listarCompras();
     }
 
-    listarVentas(): void {
+    listarCompras(): void {
       this.misVentasService.listarVentaporId()
         .subscribe((productos: any) => {
-          this.ventas = productos.filter((x:any)=>x.buyerUsername.includes(localStorage.getItem('username')|| '')) //
-          console.log(this.ventas);
+          this.compras = productos.filter((x:any)=>x.buyerUsername.includes(localStorage.getItem('username')|| '')) //
+          console.log(this.compras);
         });
     }
     trackById(index: number, producto: any): number {

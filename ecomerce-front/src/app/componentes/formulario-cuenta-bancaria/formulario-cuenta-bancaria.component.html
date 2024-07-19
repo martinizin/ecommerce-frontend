@@ -1,44 +1,52 @@
 <mat-card>
-    <mat-card-header>
-      <mat-card-title>Registrar Nueva Cuenta Bancaria</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Número de Cuenta</mat-label>
-          <input matInput type="text" formControlName="numCuenta">
-          <mat-error *ngIf="formulario.get('numCuenta')?.hasError('required')">El campo Número de Cuenta es obligatorio</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Tipo de Cuenta</mat-label>
-          <input matInput type="text" formControlName="tipCuenta">
-          <mat-error *ngIf="formulario.get('tipCuenta')?.hasError('required')">El campo Tipo de Cuenta es obligatorio</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Banco</mat-label>
-          <input matInput type="text" formControlName="banco">
-          <mat-error *ngIf="formulario.get('banco')?.hasError('required')">El campo Banco es obligatorio</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput type="text" formControlName="nombre">
-          <mat-error *ngIf="formulario.get('nombre')?.hasError('required')">El campo Nombre es obligatorio</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Apellido</mat-label>
-          <input matInput type="text" formControlName="apellido">
-          <mat-error *ngIf="formulario.get('apellido')?.hasError('required')">El campo Apellido es obligatorio</mat-error>
-        </mat-form-field>
-  
-        <div class="button-container">
-          <button mat-raised-button color="primary" type="submit">Guardar Datos Bancarios</button>
-        </div>
-      </form>
-      <button mat-button color="accent" (click)="goBack()">Regresar</button>
-    </mat-card-content>
-  </mat-card>
-  
+  <mat-card-header>
+    <mat-card-title>Registrar Nueva Cuenta Bancaria</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Número de Cuenta</mat-label>
+        <input matInput type="text" formControlName="numCuenta">
+        <mat-error *ngIf="formulario.get('numCuenta')?.hasError('required')">El campo Número de Cuenta es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('numCuenta')?.hasError('pattern')">El número de cuenta debe contener solo números</mat-error>
+        <mat-error *ngIf="formulario.get('numCuenta')?.hasError('maxlength')">El número de cuenta no debe exceder los 20 caracteres</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Tipo de Cuenta</mat-label>
+        <mat-select formControlName="tipCuenta">
+          <mat-option value="AHORROS">AHORROS</mat-option>
+          <mat-option value="CORRIENTE">CORRIENTE</mat-option>
+          <mat-option value="INTERNACIONAL">INTERNACIONAL</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formulario.get('tipCuenta')?.hasError('required')">El campo Tipo de Cuenta es obligatorio</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Banco</mat-label>
+        <input matInput type="text" formControlName="banco">
+        <mat-error *ngIf="formulario.get('banco')?.hasError('required')">El campo Banco es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('banco')?.hasError('pattern')">El banco solo debe contener letras y números</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="nombre">
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('required')">El campo Nombre es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('pattern')">El nombre solo debe contener letras</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Apellido</mat-label>
+        <input matInput type="text" formControlName="apellido">
+        <mat-error *ngIf="formulario.get('apellido')?.hasError('required')">El campo Apellido es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('apellido')?.hasError('pattern')">El apellido solo debe contener letras</mat-error>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">Guardar Datos Bancarios</button>
+      </div>
+    </form>
+    <button mat-button color="accent" (click)="goBack()">Regresar</button>
+  </mat-card-content>
+</mat-card>

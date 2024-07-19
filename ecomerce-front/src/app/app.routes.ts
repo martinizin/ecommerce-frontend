@@ -44,7 +44,7 @@ export const routes: Routes = [
     { path:'cuenta-bancaria',component:CuentaBancariaComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_EMPRENDEDOR','ROLE_CLIENT']}},
     { path:'realizar-compra',component:RealizarCompraComponent, canActivate: [RoleGuard],data: { expectedRole: ['ROLE_EMPRENDEDOR','ROLE_CLIENT']}},
     //TODO: {path:'modificar-categoria/:id',component:CategoriasComponent}, //:id simboliza el id en 'modificar/id' en ruta
-    { path:'crear-categoria',component:CategoriasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_ADMIN']}},
+    { path:'crear-categoria',component:CategoriasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_ADMIN','ROLE_EMPRENDEDOR']}},
     { path: 'listar-usuarios',component:ListadoUsuariosComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_ADMIN']}},
     { path:'todos-productos',component:ListadoProductosComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_ADMIN','ROLE_CLIENT']}},
     { path: 'carrito', component: CarritoComprasComponent,canActivate: [RoleGuard],data: { expectedRole: ['ROLE_CLIENT','ROLE_ADMIN']} },

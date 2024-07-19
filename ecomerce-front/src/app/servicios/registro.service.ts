@@ -20,7 +20,7 @@ export class RegistroService {
   }
 
   register(formValue: any) {
-    return firstValueFrom(this.httpClient.post<any>(`${this.baseUrl}/create`, formValue));
+    return firstValueFrom(this.httpClient.post<any>(`${this.baseUrl}/create`, formValue)); // Enviar el formulario al endpoint de registro
   }
 
   login(formValue: any) {

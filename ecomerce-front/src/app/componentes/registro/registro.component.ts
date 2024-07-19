@@ -42,7 +42,10 @@ export class RegistroComponent {
     private dialog:MatDialog
   ) {
     this.formulario = new FormGroup({
-      username: new FormControl('', Validators.required),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9]*$') // Validación para solo permitir letras y números
+      ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -62,8 +65,9 @@ export class RegistroComponent {
   }
   async onSubmit() {
     if (this.formulario.valid) {
+      const formValue = { ...this.formulario.value, rol: [this.formulario.value.rol] }; // Asegúrate de enviar el rol como un array
       try {
-        const response = await this.registroService.register(this.formulario.value);
+        const response = await this.registroService.register(formValue);
         console.log('Registro exitoso:', response);
         
         this.email = response.email;
@@ -72,8 +76,7 @@ export class RegistroComponent {
         });
       } catch (error) {
         console.error('Error en el registro:', error);
-        this.dialog.open(EnlaceVerificacionComponent).afterClosed().subscribe(() => {
-        });
+       
       }
     } else {
       this.formulario.markAllAsTouched();

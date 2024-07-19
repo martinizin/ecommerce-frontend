@@ -5,11 +5,13 @@
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline">
-        <mat-label>Usuario</mat-label>
-        <input matInput type="text" formControlName="username">
-        <mat-error *ngIf="formulario.get('username')?.hasError('required')">El campo Usuario es obligatorio</mat-error>
-      </mat-form-field>
+
+        <mat-form-field appearance="outline">
+      <mat-label>Usuario</mat-label>
+      <input matInput type="text" formControlName="username">
+      <mat-error *ngIf="formulario.get('username')?.hasError('required')">El campo Usuario es obligatorio</mat-error>
+      <mat-error *ngIf="formulario.get('username')?.hasError('pattern')">Solo se permiten letras y números</mat-error>
+    </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
@@ -39,7 +41,7 @@
         <mat-label>Rol</mat-label>
         <mat-select formControlName="rol">
           <mat-option value="EMPRENDEDOR">EMPRENDEDOR</mat-option>
-          <mat-option value="CLIENTE">CLIENTE</mat-option>
+          <mat-option value="CLIENT">CLIENTE</mat-option>
         </mat-select>
         <mat-error *ngIf="formulario.get('rol')?.hasError('required')">El campo Rol es obligatorio</mat-error>
         <mat-error *ngIf="formulario.get('rol')?.hasError('multipleSelection')">Solo se puede seleccionar un rol</mat-error>

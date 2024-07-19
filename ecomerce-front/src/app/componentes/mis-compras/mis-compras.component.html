@@ -17,12 +17,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let venta of ventas; let i = index;">
-            <td>{{venta.sellerUsername}}</td>
-            <td>{{venta.productName}}</td>
-            <td>{{venta.valorTotal}}</td>
-            <td><img src="{{venta.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
-            <td>{{venta.state}}</td>
+          <tr *ngFor="let compra of compras; let i = index;">
+            <td>{{compra.sellerUsername}}</td>
+            <td>{{compra.productName}}</td>
+            <td>{{compra.valorTotal}}</td>
+            <td><img src="{{compra.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
+            <td>{{compra.state}}</td>
         </tbody>
       </table>
     </div>

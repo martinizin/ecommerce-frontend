@@ -62,12 +62,15 @@ export class FormularioProductosComponent implements OnInit {
         this.loadProduct();
       }
     });
+    this.listarCategorias();
+  }
+  listarCategorias() {
     this.categoriasService.listarCategorias().subscribe(
-      categorias => {
-        this.categorias = categorias;
+      response => {
+        this.categorias = response; // Asigna directamente el array de strings a categorias
       },
       error => {
-        console.error('Error al obtener las categorías:', error);
+        console.error('Error al listar categorías:', error);
       }
     );
   }

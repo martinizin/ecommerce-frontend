@@ -33,6 +33,7 @@ export class CuentaBancariaComponent implements OnInit{
   @Output() returnEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() productsPurchased:EventEmitter<{productos: { id: number; cantidad: number; }[]}> = new EventEmitter<{productos: { id: number; cantidad: number; }[]}>();
   @Input() cartProducts:any[] =[];
+ 
     constructor(
     private cuentaBancariaService: CuentaBancariaService,
     private carritoService:CarritoCompraService,

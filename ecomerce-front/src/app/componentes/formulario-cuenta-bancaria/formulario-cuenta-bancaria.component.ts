@@ -37,11 +37,24 @@ export class FormularioCuentaBancariaComponent implements OnInit {
     private router: Router
   ) {
     this.formulario = this.fb.group({
-      numCuenta: ['', Validators.required],
-      tipCuenta: ['', Validators.required],
-      banco: ['', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required]
+      numCuenta: ['', [
+        Validators.required,
+        Validators.pattern('^[0-9]*$'), // Solo números
+        Validators.maxLength(20) // No más de 20 caracteres
+      ]],
+      tipCuenta: ['', Validators.required], // Campo obligatorio
+      banco: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9]*$') // Solo letras y números
+      ]],
+      nombre: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]*$') // Solo letras
+      ]],
+      apellido: ['', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]*$') // Solo letras
+      ]]
     });
   }
 
