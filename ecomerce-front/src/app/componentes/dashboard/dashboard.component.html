@@ -1,42 +1,18 @@
-<div class="home-container">
-    <div class="logo">
-      <img src="assets/logoDashboard2.1.png" alt="Logo">
-    </div>
-    <div class="auth-buttons">
-        <button mat-raised-button color="accent" type="button" (click)="navigateToRegister()">REGISTRO</button>
-      <button mat-raised-button color="accent" type="button" (click)="navigateToLogin()">INICIAR SESION</button>
-    </div>
-  </div>
+<div class="dashboard-container" [ngStyle]="{'background-image': 'url(' + images[currentImageIndex] + ')'}">
+  <mat-toolbar color="primary" class="header-toolbar">
+    <span class="toolbar-title">TolalaVida Ecommerce</span>
+    <span class="spacer"></span>
+    <button mat-button (click)="navigateToRegister()">Registro</button>
+    <button mat-button (click)="navigateToLogin()">Iniciar Sesión</button>
+  </mat-toolbar>
+
   <div class="main-content">
-    <div class="reel-container">
-      <div class="reel-item" *ngFor="let image of images; let i = index" [ngStyle]="{'animation-delay': i * 5 + 's'}">
-        <img [src]="image" alt="Reel Image">
-        <mat-card class="overlay-card">
-          <mat-card-title>BIENVENIDO A TOLALAVIDA ECOMMERCE</mat-card-title>
-          <mat-card-content>
-            <div class="intro-section">
-                <h1>Bienvenidos a Nuestra Plataforma</h1>
-                <p>
-                  En TolalaVida, nos apasiona transformar tus sueños emprendedores en realidades exitosas. Sabemos que cada negocio tiene una historia única y estamos aquí para ayudarte a escribir la tuya con éxito y estilo.
-                </p>
-                <p>
-                  ¿Por qué elegirnos?
-        
-                  Fácil y rápido: Nuestra plataforma intuitiva te permite crear tu tienda online en minutos, sin necesidad de conocimientos técnicos.
-                  Personalización completa: Dale vida a tu visión con nuestras herramientas de diseño y personalización. Desde el logo hasta el último detalle del diseño de tu tienda, tú decides cómo se ve.
-                  Gestión eficiente: Administra tus productos, pedidos y clientes desde un solo lugar con nuestro panel de control sencillo y potente.
-                  Soporte 24/7: Nuestro equipo de soporte está disponible en cualquier momento para ayudarte a resolver cualquier duda o problema que puedas tener.
-                  Crecimiento sostenible: Ofrecemos recursos y asesoría para que tu negocio no solo se mantenga, sino que prospere en un mercado competitivo.
-                </p>
-                <p>
-                  Nuestro objetivo es proporcionar una experiencia de compra única y personalizada, conectando a compradores con vendedores locales. Explora nuestras categorías y descubre productos únicos creados con pasión y dedicación.
-                </p>
-              </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
+    <div class="info-panel">
+      <h2>BIENVENIDOS A ECOMMERCE LA TOLA</h2>
     </div>
   </div>
-  <mat-toolbar class="footer">
-    <span>© 2024 Martin Jimenez
-  
+
+  <mat-toolbar color="primary" class="footer-toolbar">
+    <span>© 2024 Martin Jimenez</span>
+  </mat-toolbar>
+</div>

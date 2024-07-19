@@ -62,6 +62,10 @@ export class FormularioCuentaBancariaComponent implements OnInit {
 
   onSubmit(): void {
     if (this.formulario.valid) {
+      const formValue = {
+        ...this.formulario.value,
+        tipCuenta: this.formulario.value.tipCuenta.toLowerCase() // Convertir tipCuenta a minúsculas
+      };
       this.cuentaBancariaService.crearCuentaBancaria(this.formulario.value).subscribe(response => {
         console.log('Cuenta creada:', response);
         this.goBack();

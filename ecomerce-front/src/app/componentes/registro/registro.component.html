@@ -1,17 +1,16 @@
-<mat-card *ngIf="!showOtpForm">
+<mat-card *ngIf="!showOtpForm" class="register-card">
   <mat-card-header>
     <mat-card-title>Bienvenido/a TOLALAVIDA ECOMMERCE</mat-card-title>
     <mat-card-title>Formulario de registro</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-
-        <mat-form-field appearance="outline">
-      <mat-label>Usuario</mat-label>
-      <input matInput type="text" formControlName="username">
-      <mat-error *ngIf="formulario.get('username')?.hasError('required')">El campo Usuario es obligatorio</mat-error>
-      <mat-error *ngIf="formulario.get('username')?.hasError('pattern')">Solo se permiten letras y números</mat-error>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input matInput type="text" formControlName="username">
+        <mat-error *ngIf="formulario.get('username')?.hasError('required')">El campo Usuario es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('username')?.hasError('pattern')">Solo se permiten letras y números</mat-error>
+      </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
@@ -27,15 +26,13 @@
         <mat-error *ngIf="formulario.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
         <mat-error *ngIf="formulario.get('password')?.hasError('pattern')">La contraseña debe contener al menos un número, una letra mayúscula y una letra minúscula</mat-error>
       </mat-form-field>
-      
-      <mat-form-field>
+
+      <mat-form-field appearance="outline">
         <mat-label>Número Telefónico</mat-label>
         <input type="text" matInput formControlName="numero">
         <mat-error *ngIf="formulario.get('numero')?.hasError('required')">El campo Número Telefónico es obligatorio</mat-error>
         <mat-error *ngIf="formulario.get('numero')?.hasError('pattern')">El número debe comenzar con 09 y tener 10 dígitos</mat-error>
       </mat-form-field>
-      
-
 
       <mat-form-field appearance="outline">
         <mat-label>Rol</mat-label>
@@ -46,15 +43,12 @@
         <mat-error *ngIf="formulario.get('rol')?.hasError('required')">El campo Rol es obligatorio</mat-error>
         <mat-error *ngIf="formulario.get('rol')?.hasError('multipleSelection')">Solo se puede seleccionar un rol</mat-error>
       </mat-form-field>
-      
 
       <button mat-raised-button color="primary" type="submit">Enviar</button>
-     
     </form>
     <button mat-button color="accent" (click)="goToDashboard()">Regresar</button>
   </mat-card-content>
 </mat-card>
-
 <!-- <mat-card *ngIf="showOtpForm">
   <mat-card-header>
     <mat-card-title>Verificación OTP</mat-card-title>

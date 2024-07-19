@@ -1,25 +1,63 @@
-/* register.component.css */
+.register-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px; /* Borde redondeado */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  opacity: 0.9; /* Opacidad */
+  transition: opacity 0.3s, transform 0.3s; /* Animaciones */
+  margin: 2rem auto; /* Centrado con margen */
+}
 
-mat-card {
-    width: 100%;
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  mat-card-header {
-    text-align: center;
-  }
-  
-  mat-form-field {
-    width: 100%;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    text-align: center;
-  }
-  
+.register-card:hover {
+  opacity: 1;
+  transform: translateY(-5px); /* Efecto de elevación */
+}
+
+.register-card mat-card-header mat-card-title {
+  font-size: 1.5rem;
+  color: #3f51b5;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 12px; /* Borde redondeado */
+}
+
+input {
+  border-radius: 12px; /* Borde redondeado */
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  margin-bottom: 1rem;
+}
+
+.options a {
+  color: #3f51b5;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s; /* Animación para el color */
+}
+
+.options a:hover {
+  color: #303f9f; /* Color diferente al hacer hover */
+}
+
+button {
+  width: 100%;
+  border-radius: 12px; /* Borde redondeado */
+  transition: background-color 0.3s, transform 0.3s; /* Animaciones */
+}
+
+button:hover {
+  background-color: #303f9f;
+  transform: translateY(-2px); /* Efecto de elevación */
+}

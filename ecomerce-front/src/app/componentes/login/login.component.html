@@ -1,31 +1,31 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>ECOMMERCE LA TOLA</mat-card-title>
-    <mat-card-title>Bienvenido/a Ingrese sus datos:</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+<div class="login-container">
+  <div class="login-card">
+    <h1>ECOMMERCE LA TOLA</h1>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline">
-        <mat-label>Usuario</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre de usuario</mat-label>
         <input matInput type="text" formControlName="username">
         <mat-error *ngIf="formulario.controls['username'].hasError('required') && formulario.controls['username'].touched">
-          El nombre de usuario es obligatorio
+          El campo es obligatorio
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="fill">
         <mat-label>Contraseña</mat-label>
         <input matInput type="password" formControlName="password">
         <mat-error *ngIf="formulario.controls['password'].hasError('required') && formulario.controls['password'].touched">
-          La contraseña es obligatoria
+          El campo es obligatorio
         </mat-error>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">Ingresar</button>
-    </form>
+      <div class="options">
+        <a (click)="goToResetContrasena()">Olvidaste tu contraseña?</a>
+      </div>
+      <div class="options">
+        <a (click)="goToRegister()">Registrarme</a>
+      </div>
 
-    <button mat-button color="accent" (click)="goToRegister()">Registrarse</button>
-    <a mat-button color="warn" (click)="goToResetContrasena()">¿Olvidaste tu contraseña?</a>
-    <button mat-button color="accent" (click)="goToDashboard()">Regresar</button>
-  </mat-card-content>
-</mat-card>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!formulario.valid">INICIAR SESIÓN</button>
+    </form>
+  </div>
+</div>

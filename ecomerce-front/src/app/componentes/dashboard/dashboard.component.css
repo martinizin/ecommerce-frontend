@@ -1,139 +1,72 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Roboto, sans-serif;
-  }
-  
-  .home-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #1d378f;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
-  }
-  
-  .main-content {
-    position: relative;
-    top: 10px; /* Altura del navbar */
-    width: 100%;
-    height: calc(100% - 80px); /* Ajusta la altura */
-    overflow: hidden;
-  }
-  
-  .logo img {
-    height: 50px;
-    border-radius: 50%; /* Bordes redondeados para el logo */
-  }
-  
-  .logo img:hover {
-    transform: scale(1.1); /* Escala al pasar el ratón */
-    background-color: transparent;
-  }
-  
-  .auth-buttons button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 4px;
-    background-color: #296abc;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .auth-buttons button:hover {
-    transform: scale(1.05);
-  }
-  
-  .reel-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .reel-item {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    animation: fadein 15s infinite;
-  }
-  
-  .reel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .overlay-card {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    width: 60%; /* Aumenta el ancho de la tarjeta */
-    padding: 20px;
-    text-align: left;
-    border-radius: 8px;
-    z-index: 2;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
-  }
-  
-  .overlay-card h1 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-  
-  .overlay-card p {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  
-  .overlay-card ul {
-    padding-left: 20px;
-    margin: 0;
-  }
-  
-  .overlay-card li {
-    font-size: 1rem;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  
-  @keyframes fadein {
-    0% { opacity: 0; }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; }
-  }
-  
-  .footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #1d378f;
-    color: #fff;
-    width: 100%;
-    font-family: 'Arial', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    border-top: 2px solid #444;
-  }
-  
-  .footer span {
-    margin: 0;
-  }
-  
-  
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.toolbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.info-panel {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 600px;
+}
+
+.sizes, .colors {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.color-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.color-btn.red {
+  background-color: red;
+}
+
+.color-btn.blue {
+  background-color: blue;
+}
+
+.color-btn.green {
+  background-color: green;
+}
+
+.footer-toolbar {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
