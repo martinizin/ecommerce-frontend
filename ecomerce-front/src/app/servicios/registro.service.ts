@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, firstValueFrom } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,9 +14,14 @@ export class RegistroService {
   
   private httpClient = inject(HttpClient);
   private baseUrl: string;
-  
-  constructor(private _router: Router) {
+  private verifyAccountUrl:string;
+  private resetPasswordUrl:string;
+  constructor(private _router: Router,
+    private http: HttpClient
+  ) {
     this.baseUrl = 'https://backk.fly.dev';
+    this.verifyAccountUrl = 'https://backk.fly.dev/verify-account';
+    this.resetPasswordUrl = 'https://backk.fly.dev/reset-password'
   }
 
   register(formValue: any) {
@@ -75,6 +80,11 @@ export class RegistroService {
     return firstValueFrom(this.httpClient.put(url, {}, { responseType: 'text' }));
   }
   
+  verifyAccount(email: string, otp: string): Observable<any> {
+    const body = { email, otp };
+    return this.http.put<any>(this.verifyAccountUrl, body);
+  }
+
   requestPasswordReset(email: string): Observable<any> {
     return this.httpClient.post<any>('https://backk.fly.dev/send-reset', { email })
       .pipe(
@@ -84,12 +94,36 @@ export class RegistroService {
       );
   }
 
-  resetPassword(email: string, password: string): Observable<any> {
-    return this.httpClient.post<any>('https://backk.fly.dev/reset-password', { email, password })
-      .pipe(
-        catchError(error => {
-          throw error; // Puedes manejar el error aquí o simplemente lanzarlo para manejarlo en el componente
-        })
-      );
+  // resetPassword(email: string, password: string): Observable<any> {
+  //   return this.httpClient.post<any>('https://backk.fly.dev/reset-password', { email, password })
+  //     .pipe(
+  //       catchError(error => {
+  //         throw error; // Puedes manejar el error aquí o simplemente lanzarlo para manejarlo en el componente
+  //       })
+  //     );
+  // }
+  resetPassword(email: string, password: string, newPassword: string): Observable<any> {
+    const body = { password: newPassword }; // Enviar la nueva contraseña en el cuerpo
+    const url = `${this.resetPasswordUrl}?email=${email}&password=${password}`;
+    return this.http.post<any>(url, body).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred.
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // The backend returned an unsuccessful response code.
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(errorMessage);
+  }
+
+  resetPasswordNew(email: string, hashedPassword: string, newPassword: string): Observable<any> {
+    const body = { password: newPassword };
+    return this.http.post<any>(`${this.resetPasswordUrl}?email=${email}&password=${hashedPassword}`, body);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject,OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { RegistroService } from '../../servicios/registro.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule,ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { EnlaceVerificacionComponent } from '../enlace-verificacion/enlace-verificacion.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,14 +29,14 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit{
   formulario: FormGroup;
   otpForm: FormGroup;
   showOtpForm = false;
   email?: string;  // Usa el modificador opcional aquí
   registroService = inject(RegistroService);
   router = inject(Router);
- 
+  route = inject(ActivatedRoute);
 
   constructor(
     private dialog:MatDialog
@@ -62,7 +62,16 @@ export class RegistroComponent {
     this.otpForm = new FormGroup({
       otp: new FormControl('', Validators.required)
     });
-  }
+    }
+    ngOnInit() { // Implementado ngOnInit
+      this.route.queryParams.subscribe(params => {
+        const email = params['email'];
+        const otp = params['otp'];
+        if (email && otp) {
+          this.verifyAccount(email, otp);
+        }
+      });
+    }
   async onSubmit() {
     if (this.formulario.valid) {
       const formValue = { ...this.formulario.value, rol: [this.formulario.value.rol] }; // Asegúrate de enviar el rol como un array
@@ -87,20 +96,30 @@ export class RegistroComponent {
     if (this.otpForm.valid) {
       try {
         const otp = this.otpForm.value.otp;
-        if (this.email) {  
-          const response = await this.registroService.verifyOtp(this.email, otp);
+        if (this.email) {
+          const response = await this.registroService.verifyAccount(this.email, otp);
           alert('Verificación OTP exitosa:');
           this.router.navigate(['/login']);
         } else {
           console.error('El email no está definido.');
         }
       } catch (error) {
-        console.error('Error en la verificación OTP:', error);
+        console.error('Error en la verificación:', error);
       }
     } else {
       this.otpForm.markAllAsTouched();
     }
   }
+  async verifyAccount(email: string, otp: string) {
+    try {
+      const response = await this.registroService.verifyOtp(email, otp);
+      console.log('Verificación exitosa:', response);
+      this.router.navigate(['/login']); // Redirecciona al login después de la verificación
+    } catch (error) {
+      console.error('Error en la verificación:', error);
+    }
+  }
+
   singleSelectionValidator(control: AbstractControl): { [key: string]: boolean } | null {
     if (Array.isArray(control.value) && control.value.length > 1) {
       return { multipleSelection: true };

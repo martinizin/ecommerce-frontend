@@ -1,35 +1,14 @@
-<form (ngSubmit)="resetPassword()" class="reset-form" #resetForm="ngForm">
-  <div class="form-group">
-    <input
-      type="password"
-      [(ngModel)]="newPassword"
-      name="newPassword"
-      placeholder="Nueva contraseña"
-      required
-      minlength="8"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-      #newPasswordInput="ngModel"
-    />
-    <div *ngIf="newPasswordInput.invalid && (newPasswordInput.dirty || newPasswordInput.touched)" class="error">
-      <div *ngIf="newPasswordInput.errors?.['required']">El campo es obligatorio.</div>
-      <div *ngIf="newPasswordInput.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
-      <div *ngIf="newPasswordInput.errors?.['pattern']">Debe contener al menos un número, una letra mayúscula y minúscula.</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <input
-      type="password"
-      [(ngModel)]="confirmPassword"
-      name="confirmPassword"
-      placeholder="Confirma la contraseña"
-      required
-      #confirmPasswordInput="ngModel"
-      [ngClass]="{'is-invalid': confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)}"
-    />
-    <div *ngIf="confirmPasswordInput.invalid && (confirmPasswordInput.dirty || confirmPasswordInput.touched)" class="error">
-      <div *ngIf="confirmPasswordInput.errors?.['required']">Confirma la contraseña!</div>
-      <div *ngIf="confirmPassword !== newPassword">Las contraseñas deben coincidir.</div>
-    </div>
-  </div>
-  <button type="submit" class="reset-button" [disabled]="resetForm.invalid || confirmPassword !== newPassword">Restablecer Contraseña</button>
-</form>
+<div class="reset-password-container">
+  <mat-card>
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nueva Contraseña</mat-label>
+        <input matInput type="password" formControlName="newPassword">
+        <mat-error *ngIf="newPasswordControl && newPasswordControl.invalid">
+          Contraseña inválida. Debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número.
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Restablecer Contraseña</button>
+    </form>
+  </mat-card>
+</div>

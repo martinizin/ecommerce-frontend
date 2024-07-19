@@ -1,72 +1,82 @@
 .dashboard-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  color: white;
+  padding: 20px;
 }
 
-.header-toolbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 1rem;
-}
-
-.toolbar-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.spacer {
-  flex: 1;
-}
-
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.9);
+  border: 5px solid #ccc;
+  border-radius: 15px;
+  padding: 20px;
   text-align: center;
+  max-width: 600px;
+  width: 100%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.button-container {
+  margin-bottom: 20px;
+}
+
+.action-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .info-panel {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 600px;
+  color: #333;
 }
 
-.sizes, .colors {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
+.info-panel h2 {
+  margin-bottom: 15px;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  animation: bounce 1s infinite;
 }
 
-.color-btn {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
+.info-panel p {
+  font-size: 18px;
+  line-height: 1.5;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 10px;
+  animation: slideIn 1s ease-out;
 }
 
-.color-btn.red {
-  background-color: red;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.color-btn.blue {
-  background-color: blue;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
 }
 
-.color-btn.green {
-  background-color: green;
-}
-
-.footer-toolbar {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }

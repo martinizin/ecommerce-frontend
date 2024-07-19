@@ -1,18 +1,12 @@
-<div class="dashboard-container" [ngStyle]="{'background-image': 'url(' + images[currentImageIndex] + ')'}">
-  <mat-toolbar color="primary" class="header-toolbar">
-    <span class="toolbar-title">TolalaVida Ecommerce</span>
-    <span class="spacer"></span>
-    <button mat-button (click)="navigateToRegister()">Registro</button>
-    <button mat-button (click)="navigateToLogin()">Iniciar Sesión</button>
-  </mat-toolbar>
-
-  <div class="main-content">
+<div class="dashboard-container" [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}">
+  <div class="content-wrapper">
+    <div class="button-container">
+      <button class="action-button" (click)="navigateToRegister()">Registro</button>
+      <button class="action-button" (click)="navigateToLogin()">Iniciar Sesión</button>
+    </div>
     <div class="info-panel">
       <h2>BIENVENIDOS A ECOMMERCE LA TOLA</h2>
+      <p>Bienvenidos a Ecommerce La Tola, su plataforma confiable para comprar y vender productos en barrios rurales. Únete a nuestra comunidad y descubre la facilidad de comprar y vender en línea. Aprovecha la comodidad, seguridad y apoyo a la comunidad que ofrecemos.</p>
     </div>
   </div>
-
-  <mat-toolbar color="primary" class="footer-toolbar">
-    <span>© 2024 Martin Jimenez</span>
-  </mat-toolbar>
 </div>
