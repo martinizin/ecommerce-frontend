@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -53,7 +53,7 @@ export class RegistroComponent {
         Validators.required,
         Validators.pattern('^09\\d{8}$') // La expresión regular para validar el número telefónico
       ]),
-      rol: new FormControl('', Validators.required)
+      rol: new FormControl('', [Validators.required, this.singleSelectionValidator])
     });
 
     this.otpForm = new FormGroup({
@@ -97,6 +97,12 @@ export class RegistroComponent {
     } else {
       this.otpForm.markAllAsTouched();
     }
+  }
+  singleSelectionValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    if (Array.isArray(control.value) && control.value.length > 1) {
+      return { multipleSelection: true };
+    }
+    return null;
   }
   goToDashboard() {
     this.router.navigate(['/dashboard']);

@@ -37,12 +37,14 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Rol</mat-label>
-        <mat-select formControlName="rol" multiple>
+        <mat-select formControlName="rol">
           <mat-option value="EMPRENDEDOR">EMPRENDEDOR</mat-option>
-          <mat-option value="CLIENT">CLIENTE</mat-option>
+          <mat-option value="CLIENTE">CLIENTE</mat-option>
         </mat-select>
         <mat-error *ngIf="formulario.get('rol')?.hasError('required')">El campo Rol es obligatorio</mat-error>
+        <mat-error *ngIf="formulario.get('rol')?.hasError('multipleSelection')">Solo se puede seleccionar un rol</mat-error>
       </mat-form-field>
+      
 
       <button mat-raised-button color="primary" type="submit">Enviar</button>
      

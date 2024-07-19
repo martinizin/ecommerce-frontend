@@ -37,9 +37,10 @@
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>CATEGORIA</mat-label>
       <mat-select formControlName="categoria">
-        <mat-option *ngFor="let categoria of categoria" [value]="categoria">{{ categoria }}</mat-option>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</mat-option>
       </mat-select>
     </mat-form-field>
+    
     <div class="form-buttons">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Guardar Producto</button>
       <button mat-button type="button" (click)="cancel()">Cancelar</button>

@@ -10,6 +10,7 @@ import { CrudProductosService } from '../../servicios/crud-productos.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AgregarCategoriasService } from '../../servicios/agregar-categorias.service';
 
 @Component({
   selector: 'app-formulario-productos',
@@ -31,7 +32,7 @@ import { RouterModule } from '@angular/router';
 })
 export class FormularioProductosComponent implements OnInit {
   form: FormGroup;
-  categoria: string[] = ['ARTESANIAS', 'ALIMENTOS', 'ROPA', 'OTROS'];
+  categorias: string[] = [];
   imagen: File | undefined;
   productoId: number | undefined;
   isEditing = false;
@@ -39,6 +40,7 @@ export class FormularioProductosComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private crudService: CrudProductosService,
+    private categoriasService: AgregarCategoriasService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -60,6 +62,14 @@ export class FormularioProductosComponent implements OnInit {
         this.loadProduct();
       }
     });
+    this.categoriasService.listarCategorias().subscribe(
+      categorias => {
+        this.categorias = categorias;
+      },
+      error => {
+        console.error('Error al obtener las categorías:', error);
+      }
+    );
   }
 
   onFileChange(event: any) {
