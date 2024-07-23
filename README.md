@@ -31,6 +31,19 @@ Instala las dependencias
 ```bash
   npm i --legacy-peer-deps
 ```
+Inicia el servidor
+
+```bash
+  ng serve -o
+```
+
+La aplicación utilizará por defecto el puerto 4200
+
+```bash
+  http:localhost:4200
+
+- Nota: Toma en cuenta que los2 últimos comandos son para levantar el sistema de manera local,
+para lo cual tendrás que clonar el backend y cambiar las variables de entorno.
 
 ## Despliegue 📦
 
