@@ -22,7 +22,7 @@
             <td>{{venta.id}}</td>
             <td>{{venta.buyerUsername}}</td>
             <td>{{venta.productName}}</td>
-            <td>{{venta.valorventaunitario}}</td>
+            <td>{{venta.valorTotal}}</td>
             <td><img src="{{venta.paymentProofUrl}}" alt="Imagen del producto" class="product-image"></td>
             <td>
               <select [(ngModel)]="venta.state" (ngModelChange)="cambiarEstado(venta, $event)">

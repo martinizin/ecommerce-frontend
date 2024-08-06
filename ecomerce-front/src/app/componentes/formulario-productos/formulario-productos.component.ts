@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -179,11 +179,12 @@ export class FormularioProductosComponent implements OnInit {
   }
   validateStock(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
-    if (value <= 0 || value % 1 !== 0) {
+    if (value <= 0) {
       return { invalidStock: true };
     }
     return null;
   }
+  
   validatePrecio(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
     if (value <= 0) {

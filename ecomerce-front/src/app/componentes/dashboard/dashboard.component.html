@@ -3,10 +3,26 @@
     <div class="button-container">
       <button class="action-button" (click)="navigateToRegister()">Registro</button>
       <button class="action-button" (click)="navigateToLogin()">Iniciar Sesión</button>
+      <button class="action-button" (click)="toggleContactCard()">Contacto</button> <!-- Añadido botón de contacto -->
     </div>
     <div class="info-panel">
       <h2>BIENVENIDOS A ECOMMERCE LA TOLA</h2>
-      <p>Bienvenidos a Ecommerce La Tola, su plataforma confiable para comprar y vender productos en barrios rurales. Únete a nuestra comunidad y descubre la facilidad de comprar y vender en línea. Aprovecha la comodidad, seguridad y apoyo a la comunidad que ofrecemos.</p>
+      <p>Bienvenidos a Ecommerce La Tola, su plataforma confiable para comprar
+         y vender productos en barrios rurales. Únete a nuestra comunidad
+          y descubre la facilidad de comprar y vender en línea.
+           Aprovecha la comodidad, seguridad y apoyo a la comunidad que ofrecemos.</p>
+    </div>
+    <div *ngIf="showContactCard" class="contact-card"> <!-- Añadida tarjeta de contacto -->
+      <h3>Bienvenido/a a la sección de soporte</h3>
+      <p>Si tienes inconvenientes con una transacción o algún problema con tu cuenta, no dudes en contactarte con los administradores:</p>
+      <p>Correos:
+        <a href="mailto:martin.jimenez@epn.edu.ec">martin.jimenez&#64;epn.edu.ec</a> -
+        <a href="mailto:josue.novillo@epn.edu.ec">josue.novillo&#64;epn.edu.ec</a>
+      </p>
+      <p>Números:
+        <a href="https://wa.me/593982525365" target="_blank">0982525365</a> -
+        <a href="https://wa.me/593984341502" target="_blank">0984341502</a>
+      </p>
     </div>
   </div>
 </div>

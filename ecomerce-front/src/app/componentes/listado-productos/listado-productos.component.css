@@ -18,10 +18,7 @@
     justify-content: center;
     margin: 1rem 0;
   }
-  .button{
-    color: #3f51b5;
-  }
-  
+ 
   .button-container button {
     margin: 0 0.5rem;
     background-color: transparent;
@@ -36,6 +33,10 @@
     background-color: #3f51b5;
     color: #fff;
   }
+  .button{
+    color: #3f51b5;
+  }
+  
   
   .table-container {
     overflow-x: auto;

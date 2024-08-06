@@ -13,6 +13,7 @@ export class DashboardComponent {
 
   backgroundImage: string = 'assets/reelHome7.png';
   currentImageIndex: number = 0;
+  showContactCard: boolean = false; // Añadido para manejar la visualización de la tarjeta de contacto
 
   constructor(private router: Router) {}
 
@@ -22,5 +23,8 @@ export class DashboardComponent {
 
   navigateToRegister() {
     this.router.navigate(['/register']);
+  }
+  toggleContactCard() {
+    this.showContactCard = !this.showContactCard; // Añadido para alternar la visualización de la tarjeta de contacto
   }
 }
