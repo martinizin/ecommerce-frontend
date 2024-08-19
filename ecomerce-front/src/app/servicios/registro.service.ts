@@ -19,9 +19,9 @@ export class RegistroService {
   constructor(private _router: Router,
     private http: HttpClient
   ) {
-    this.baseUrl = 'https://backk.fly.dev';
-    this.verifyAccountUrl = 'https://backk.fly.dev/verify-account';
-    this.resetPasswordUrl = 'https://backk.fly.dev/reset-password'
+    this.baseUrl = 'https://backcom.fly.dev';
+    this.verifyAccountUrl = 'https://backcom.fly.dev/verify-account';
+    this.resetPasswordUrl = 'https://backcom.fly.dev/reset-password'
   }
 
   register(formValue: any) {

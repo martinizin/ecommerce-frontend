@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class CarritoCompraService {
-  private baseUrl: string = 'https://backk.fly.dev/api/v1/producto';
+  private baseUrl: string = 'https://backcom.fly.dev/api/v1/producto';
   private carrito = new BehaviorSubject<any[]>([]);
   
   carrito$ = this.carrito.asObservable();
@@ -18,7 +18,7 @@ export class CarritoCompraService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.httpClient.put('https://backk.fly.dev/api/v1/compras/compra', prodcts, { headers });
+    return this.httpClient.put('https://backcom.fly.dev/api/v1/compras/compra', prodcts, { headers });
     
   }
   obtenerToken(): string {

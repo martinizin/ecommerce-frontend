@@ -8,7 +8,7 @@ import { catchError } from 'rxjs';
 })
 export class AgregarCategoriasService {
 
-  private baseUrl = 'https://backk.fly.dev/api/v1/categoria';
+  private baseUrl = 'https://backcom.fly.dev/api/v1/categoria';
 
   constructor(private http: HttpClient) { }
 

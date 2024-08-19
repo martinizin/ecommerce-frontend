@@ -6,8 +6,8 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class CrudProductosService {
-  private baseUrl = 'https://backk.fly.dev/api/v1/producto';
-  private imagenUrl = 'https://backk.fly.dev/api/v1/producto/image';
+  private baseUrl = 'https://backcom.fly.dev/api/v1/producto';
+  private imagenUrl = 'https://backcom.fly.dev/api/v1/producto/image';
 
   constructor(private http: HttpClient) {}
 
